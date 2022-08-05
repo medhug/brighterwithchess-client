@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter, Switch, Route} from 'react-router-dom';
+import Header from "./components/Header/Header";
 import Landing from './pages/Landing/Landing';
 import Dashboard from "./pages/Dashboard/Dashboard";
 import Signup from "./pages/Signup/Signup";
@@ -38,7 +39,9 @@ class App extends React.Component {
               <Route path="/learn/:id" />
               <Route path="/quiz/:id"  />
             </Switch>
+            <Header userStatus={this.state.isLoggedIn}/>
           </BrowserRouter>
+          
         </>
       );
     } else {

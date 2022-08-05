@@ -1,5 +1,4 @@
 import "../Landing/Landing.scss";
-import Header from "../../components/Header/Header";
 import chesshero from '../../assets/images/chess-hero.jpg';
 
 
@@ -12,9 +11,6 @@ function Landing() {
                 <div className="landing__hero-container">
                     <img className="landing__hero-container--img" src={chesshero} alt="chess pieces by Felix Mittermeier unsplash" />
                 </div>
-            </div>
-            <div>
-                <Header />
             </div>
       </>
     );
