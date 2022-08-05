@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Switch, Route, Redirect} from 'react-router-dom';
 import Landing from './pages/Landing/Landing';
 import Dashboard from "./pages/Dashboard/Dashboard";
+import Header from "./components/Header/Header.js";
 
 class App extends React.Component {
   state = {
@@ -32,6 +33,7 @@ class App extends React.Component {
             <Route path="/quiz" />
             <Route path="/learn/:id" />
             <Route path="/quiz/:id"  />
+            <Header userStatus={this.state.isLoggedIn} />
           </Switch>
       </BrowserRouter>
       } else {
@@ -42,6 +44,7 @@ class App extends React.Component {
             <Route exact path="/landing">
                 <Redirect to="/" />
             </Route>
+            <Header userStatus={this.state.isLoggedIn} />
           </BrowserRouter>
           </>
         );
