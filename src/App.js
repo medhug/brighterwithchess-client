@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Switch, Route, Redirect} from 'react-router-dom';
 import Landing from './pages/Landing/Landing';
+import Dashboard from "./pages/Dashboard/Dashboard";
 
 class App extends React.Component {
   state = {
@@ -20,26 +21,34 @@ class App extends React.Component {
 
   render (){
     if(this.state.pageDidMount){
-      return (
+      if(this.state.isLoggedIn){
+        <BrowserRouter>
+          <Switch>
+            <Dashboard />
+            <Route path="/dashboard" />
+            <Route path="/signup" />
+            <Route path="/login" />
+            <Route path="/learn" />
+            <Route path="/quiz" />
+            <Route path="/learn/:id" />
+            <Route path="/quiz/:id"  />
+          </Switch>
+      </BrowserRouter>
+      } else {
+        return (
           <>
           <BrowserRouter>
-            <Switch>
-              <h1>Page mounted and made it to APP.js</h1>
-              if(!this.state.isLoggedIn){
-                <Landing />
-              }
-              <Route exact path="/">
-                  <Redirect to="/dashboard" />
-              </Route>
-              <Route path="/signup" />
-              <Route path="/login" />
-              <Route path="/dashboard" />
-              <Route path="/learn" />
-              <Route path="/quiz" />
-              <Route path="/learn/:id" />
-              <Route path="/quiz/:id"  />
-            </Switch>
+            <Landing />
+            <Route exact path="/landing">
+                <Redirect to="/" />
+            </Route>
           </BrowserRouter>
+          </>
+        );
+      }
+      return (
+          <>
+
           </>
       );
     } else {
