@@ -16,7 +16,7 @@ function Header({userStatus}) {
     } else {
         return (
             <nav className="navbar">
-              <Link to="/Landing">Home</Link>
+              <Link to="/landing">Home</Link>
               <Link to="/signup">signup</Link>
               <Link to="/login">login</Link>
             </nav>
