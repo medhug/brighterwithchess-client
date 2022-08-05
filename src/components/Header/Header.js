@@ -3,8 +3,6 @@ import {Link} from "react-router-dom";
 
 function Header({userStatus}) {
 
-    console.log("made it to header", userStatus);
-
     if(userStatus){
         return (
             <nav className="navbar">
@@ -16,7 +14,7 @@ function Header({userStatus}) {
     } else {
         return (
             <nav className="navbar">
-              <Link to="/landing">Home</Link>
+              <Link to="/">Home</Link>
               <Link to="/signup">signup</Link>
               <Link to="/login">login</Link>
             </nav>
