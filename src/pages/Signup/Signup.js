@@ -4,37 +4,42 @@ import { Component } from "react";
 import axios from "axios";
 import Input from "../../components/Input/Input";
 
+
+const baseUrl = 'http://localhost:5050';
+const signupUrl = `${baseUrl}/signup`;
+
 class Signup extends Component {
     state = {
-        error: "",
+        isSignedUp: false,
+        errorMessage: '',
         success: false,
     };
 
-    handleSubmit = (event) => {
-        event.preventDefault();
-
+    handleSignup = (e) => {
+        e.preventDefault();
+        console.log("signup clicked");
         axios
-            .post("http://localhost:8080/api/users/register", {
-                email: event.target.email.value,
-                password: event.target.password.value,
-                first_name: event.target.first_name.value,
-            })
-            .then(() => {
-                this.setState({ success: true, error: "" });
-                event.target.reset();
-            })
-            .catch((error) => {
-                this.setState({ success: false, error: error.response ? error.response.data : error.message });
+          .post(signupUrl, {
+            email:e.target.email.value,
+            name: e.target.name.value,
+            password: e.target.password.value,
+          })
+          .then((response) => {
+            console.log(response);
+            this.setState({
+              isSignedUp: true,
             });
-    };
+          })
+          .catch((err) => console.log(err));
+      };
 
     render() {
         return (
             <main className="signup-page">
-                <form className="signup" onSubmit={this.handleSubmit}>
+                <form className="signup" onSubmit={this.handleSignup}>
 
                     <Input type="text" name="email" label="Email" />
-                    <Input type="text" name="first_name" label="First name" />
+                    <Input type="text" name="name" label="First name" />
                     <Input type="password" name="password" label="Password" />
                     <Input type="password2" name="password2" label="Repeat Password" />
                     <button className="signup__button">Sign up</button>
