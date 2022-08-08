@@ -5,14 +5,13 @@ import axios from "axios";
 import Input from "../../components/Input/Input";
 
 
-const baseUrl = 'http://localhost:5050';
-const signupUrl = `${baseUrl}/signup`;
+const baseUrl = 'http://localhost:5050/users';
 
 class Signup extends Component {
     state = {
         isSignedUp: false,
         error: false,
-        passwordMessage: null,
+        errorMessage: null,
         success: false,
     };
 
@@ -22,34 +21,44 @@ class Signup extends Component {
 
         if(e.target.password.value !== e.target.password2.value){
             this.setState({
-                passwordMessage : "Passwords don't match"
+                errorMessage : "Passwords don't match"
             })
             return
         } else {
             this.setState({
-                passwordMessage : null
+                errorMessage : null
             })
         }
 
+        if( !e.target.name.value || !e.target.password.value || !e.target.email.value){
+            this.setState({
+                errorMessage : "Something is missing"
+            })
+            return
+        } else {
+            this.setState({
+                errorMessage : null
+            })
+        }
 
         axios
-            .post(signupUrl, {
-            email: e.target.email.value,
-            name: e.target.name.value,
-            password: e.target.password.value,
+            .post(baseUrl, {
+                name: e.target.name.value,
+                password: e.target.password.value,
+                email: e.target.email.value,
             })
             .then((response) => {
-            console.log(response);
-            this.setState({
-              isSignedUp: true,
-              success: true
-            });
+                console.log(response);
+                this.setState({
+                isSignedUp: true,
+                success: true
+                });
             })
             .catch((err) => {
-            console.log(err);
-            this.setState({
-                error: true
-            })
+                console.log(err);
+                this.setState({
+                    error: true
+                })
             });
     };
 
@@ -65,7 +74,7 @@ class Signup extends Component {
                     <button className="signup__button">Sign up</button>
 
                     {this.state.success && <div className="signup__message">Signed up!</div>}
-                    {this.state.passwordMessage && <div className="signup__message">{"Passwords dont match!"}</div>}
+                    {this.state.errorMessage && <div className="signup__message">{this.state.errorMessage}</div>}
                     {this.state.error && <div className="signup__message">{this.state.error}</div>}
                 </form>
             </main>
