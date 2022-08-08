@@ -1,8 +1,8 @@
 import "../Login/Login.scss"
 import {Component} from 'react';
+import {Link} from 'react-router-dom';
 import axios from 'axios';
 import Input from "../../components/Input/Input";
-import Dashboard from "../Dashboard/Dashboard";
 
 const baseUrl = 'http://localhost:5050';
 const loginUrl = `${baseUrl}/login`;
@@ -28,6 +28,7 @@ class Login extends Component {
             sessionStorage.setItem('token', response.data.token);
             this.setState({
               isLoggedIn: true,
+              userURL: "/dashboard/email"
             });
           })
           .catch((err) => {
@@ -48,11 +49,14 @@ class Login extends Component {
                     <button className="login__button">Log In</button>
 
                     {this.state.isLoggedIn && <div className="login__message">Logged in</div>}
+                    {this.state.isLoggedIn && <Link to={{pathname:"/dashboard/user", state: {
+                        isLoggedIn: true,
+                    }}}>
+                        <div className="login__message">Go to dashboard</div></Link>}
                     {this.state.isLoginError && <div className="login__message">{this.state.errorMessage}</div>}
                     </form>
                 </main>
 
-                <div>{this.state.isLoggedIn && <Dashboard status={this.state.isLoggedIn}/>}</div>
             </>
         );  
     }

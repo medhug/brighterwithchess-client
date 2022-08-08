@@ -1,7 +1,6 @@
 import '../Dashboard/Dashboard.scss';
 import {Component} from 'react';
 import axios from 'axios';
-import Input from "../../components/Input/Input";
 
 const baseUrl = 'http://localhost:5050';
 const loginUrl = `${baseUrl}/login`;
@@ -9,13 +8,13 @@ const loginUrl = `${baseUrl}/login`;
 
 class Dashboard extends Component {
   state = {
-      isLoggedIn: false,
-
+      error: ""
   };
 
 
-
   render(){
+    console.log(this.props);
+
     if(this.state.isLoggedIn){
       return (
           <>

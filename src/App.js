@@ -31,13 +31,13 @@ class App extends React.Component {
           <BrowserRouter>
             <Switch>
               <Route exact path="/" component={Landing}/>
-              <Route path="/dashboard" component={Dashboard}/>
               <Route path="/signup" component={Signup}/>
               <Route path="/login" component={Login}/>
-              <Route path="/learn" component={Learn}/>
-              <Route path="/quiz" component={Quiz}/>
-              <Route path="/learn/:id" />
-              <Route path="/quiz/:id"  />
+              <Route path="/dashboard/:id" component={Dashboard}/>
+              <Route path="/dashboard/:id/learn" component={Learn}/>
+              <Route path="/dashboard/:id/quiz" component={Quiz}/>
+              <Route path="/dashboard/:id/learn/:id" />
+              <Route path="/dashboard/:id/quiz/:id"  />
             </Switch>
             <Header userStatus={this.state.isLoggedIn}/>
           </BrowserRouter>
