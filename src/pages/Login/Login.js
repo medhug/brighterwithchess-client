@@ -1,6 +1,7 @@
 import "../Login/Login.scss"
 import {Component} from 'react';
 import axios from 'axios';
+import Input from "../../components/Input/Input";
 
 const baseUrl = 'http://localhost:8080';
 const loginUrl = `${baseUrl}/login`;
@@ -11,15 +12,15 @@ class Login extends Component {
         isLoggedIn: false,
         isLoginError: false,
         errorMessage: '',
-      };
-
+    };
 
     handleLogin = (e) => {
         e.preventDefault();
         console.log(e);
         axios
           .post(loginUrl, {
-            username: e.target.username.value,
+            email: e.target.email.value,
+            name: e.target.username.value,
             password: e.target.password.value,
           })
           .then((response) => {
@@ -33,27 +34,22 @@ class Login extends Component {
             console.log(err);
             this.setState({ isLoginError: true, errorMessage: err });
           });
-      };
+    };
 
     render(){
         const { isLoginError, errorMessage } = this.state;
         return (
             <>
-                <div>
+                <main className="login-page">
                     <h1>Login</h1>
                     {isLoginError && <label style={{ color: 'red' }}>{errorMessage}</label>}
-                    <form onSubmit={this.handleLogin}>
-                    <div className="form-group">
-                        Username: <input type="text" name="username" />
-                    </div>
-                    <div className="form-group">
-                        Password: <input type="password" name="password" />
-                    </div>
-                    <button className="btn btn-primary" type="submit">
-                        Login
-                    </button>
+
+                    <form className="login" onSubmit={this.handleLogin}>
+                    <Input type="text" name="email" label="Email" />
+                    <Input type="text" name="password" label="Password" />
+                    <button className="login__button">Log In</button>
                     </form>
-                </div>
+                </main>
             </>
         );  
     }
