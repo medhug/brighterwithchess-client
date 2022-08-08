@@ -4,9 +4,7 @@ import {Link} from 'react-router-dom';
 import axios from 'axios';
 import Input from "../../components/Input/Input";
 
-const baseUrl = 'http://localhost:5050';
-const loginUrl = `${baseUrl}/login`;
-
+const baseUrl = 'http://localhost:5050/users/login';
 
 class Login extends Component {
     state = {
@@ -16,25 +14,38 @@ class Login extends Component {
     };
 
     handleLogin = (e) => {
-        e.preventDefault();
-        console.log(e);
-        axios
-          .post(loginUrl, {
-            email: e.target.email.value,
-            password: e.target.password.value,
-          })
-          .then((response) => {
-            console.log(response);
-            sessionStorage.setItem('token', response.data.token);
-            this.setState({
-              isLoggedIn: true,
-              userURL: "/dashboard/email"
-            });
-          })
-          .catch((err) => {
-            console.log(err);
-            this.setState({ isLoginError: true, errorMessage: err });
+      e.preventDefault();
+      console.log(e);
+
+      if( !e.target.email.value || !e.target.password.value){
+        this.setState({
+            isLoginError : true,
+            errorMessage : "Something is missing"
+        })
+        return
+      } else {
+        this.setState({
+            errorMessage : null
+        })
+      }
+
+      axios
+        .post(baseUrl, {
+          email: e.target.email.value,
+          password: e.target.password.value,
+        })
+        .then((response) => {
+          console.log(response);
+          sessionStorage.setItem('token', response.data.token);
+          this.setState({
+            isLoggedIn: true,
+            userURL: "/dashboard/email"
           });
+        })
+        .catch((err) => {
+          console.log(err);
+          this.setState({ isLoginError: true, errorMessage: "email or/and password incorrect" });
+        });
     };
 
     render(){

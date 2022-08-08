@@ -2,18 +2,23 @@ import '../Dashboard/Dashboard.scss';
 import {Component} from 'react';
 import axios from 'axios';
 
-const baseUrl = 'http://localhost:5050';
-const loginUrl = `${baseUrl}/login`;
-
 
 class Dashboard extends Component {
   state = {
-      error: ""
+    error: ""
   };
 
+  componentDidMount(){
+    console.log("page mounted");
+
+    this.setState({
+      isLoggedIn : this.props.location.state.isLoggedIn
+    })
+
+  }
 
   render(){
-    console.log("==>", this.props);
+    console.log("==>", this.props.location.state);
 
     if(this.state.isLoggedIn){
       return (
