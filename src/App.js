@@ -13,15 +13,24 @@ class App extends React.Component {
   state = {
     "user" : null,
     pageDidMount : false,
-    isLoggedIn : false
+    systemWideLogIn : false
   }
 
   componentDidMount(){
     console.log("page mounted");
+    console.log("system log in: ", this.state.systemWideLogIn)
     this.setState({
       pageDidMount: true,
     });
 
+  }
+
+  handleSystemWideLogIn = () => {
+    console.log("system wide login triggered");
+    
+    this.setState({
+      systemWideLogIn : true
+    })
   }
 
   render (){
@@ -32,14 +41,14 @@ class App extends React.Component {
             <Switch>
               <Route exact path="/" component={Landing}/>
               <Route path="/signup" component={Signup}/>
-              <Route path="/login" component={Login}/>
-              <Route path="/dashboard/:id" component={Dashboard}/>
+              <Route path="/login"><Login handleSystemWideLogIn={this.handleSystemWideLogIn}/></Route>
+              <Route path="/dashboard/:id" component={Dashboard} />
               <Route path="/dashboard/:id/learn" component={Learn}/>
               <Route path="/dashboard/:id/quiz" component={Quiz}/>
               <Route path="/dashboard/:id/learn/:id" />
               <Route path="/dashboard/:id/quiz/:id"  />
             </Switch>
-            <Header userStatus={this.state.isLoggedIn}/>
+            <Header userStatus={this.state.systemWideLogIn}/>
           </BrowserRouter>
           
         </>

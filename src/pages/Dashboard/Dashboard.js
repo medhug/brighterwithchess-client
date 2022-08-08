@@ -1,6 +1,6 @@
 import '../Dashboard/Dashboard.scss';
 import {Component} from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 
 
 class Dashboard extends Component {
@@ -18,7 +18,6 @@ class Dashboard extends Component {
   }
 
   render(){
-    console.log("==>", this.props.location.state);
 
     if(this.state.isLoggedIn){
       return (

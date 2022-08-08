@@ -49,27 +49,27 @@ class Login extends Component {
     };
 
     render(){
-        return (
-            <>
-                <main className="login-page">
-                    <h1>Login</h1>
+      let allLoggedIn = this.props.handleSystemWideLogIn;
 
-                    <form className="login" onSubmit={this.handleLogin}>
-                    <Input type="text" name="email" label="Email" />
-                    <Input type="text" name="password" label="Password" />
-                    <button className="login__button">Log In</button>
+      return (
+          <>
+              <main className="login-page">
+                  <h1>Login</h1>
 
-                    {this.state.isLoggedIn && <div className="login__message">Logged in</div>}
-                    {this.state.isLoggedIn && <Link to={{pathname:"/dashboard/user", state: {
-                        isLoggedIn: true,
-                    }}}>
-                        <div className="login__message">Go to dashboard</div></Link>}
-                    {this.state.isLoginError && <div className="login__message">{this.state.errorMessage}</div>}
-                    </form>
-                </main>
+                  <form className="login" onSubmit={this.handleLogin}>
+                  <Input type="text" name="email" label="Email" />
+                  <Input type="text" name="password" label="Password" />
+                  <button className="login__button">Log In</button>
 
-            </>
-        );  
+                  {this.state.isLoggedIn && <div className="login__message">Logged in</div>}
+                  {this.state.isLoggedIn && <Link to={{pathname:"/dashboard/user", state: {isLoggedIn: true,}}}>
+                      <div className="login__message" onClick={() => allLoggedIn()}>Go to dashboard</div></Link>}
+                  {this.state.isLoginError && <div className="login__message">{this.state.errorMessage}</div>}
+                  </form>
+              </main>
+
+          </>
+      );  
     }
 
   }
