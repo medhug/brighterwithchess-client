@@ -5,15 +5,15 @@ import knight from "../../assets/images/knight.png";
 
 function Header({userStatus}) {
 
-    if(userStatus){
+    if(userStatus === true){
         return (
             <nav className="navbar">
-              <Link to="/dashboard">
+              <Link to="/dashboard/user">
                 <div className="navbar__logo-container">
                   <img className="navbar__logo-container--image" src={logo} alt="knight by Hassan Pasha, unsplash" />
                 </div> 
               </Link>
-              <Link to="/dashboard">dash</Link>
+              <Link to="/dashboard/user">dash</Link>
               <Link to="/learn">learn</Link>
               <Link to="/quiz">quiz</Link>
             </nav>

@@ -3,14 +3,13 @@ import {Link} from 'react-router-dom';
 
 function ProgressBlock(props) {
   
+
+
     return (
       <>
-        <Link to="/dashboard/:id/quiz/:category">
-            <div className="block">
-                <p>{props.questionNum}</p>
-            </div>
-
-        </Link>
+        <div className={props.completed ? "block": "block--completed"}>
+            <p>{props.questionNum}</p>
+        </div>
       </>
     );
   }

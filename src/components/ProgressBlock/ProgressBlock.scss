@@ -5,8 +5,16 @@
 }
 
 .block {
-    width: 100px;
-    height: 100px;
+    width: 50px;
+    height: 50px;
     border: 2px solid black;
-    background-color: #FC967E;
+    background-color: red;
+
+    &--completed {
+        background-color: blue;
+        width: 50px;
+        height: 50px;
+        border: 2px solid black;
+    }
+
 }

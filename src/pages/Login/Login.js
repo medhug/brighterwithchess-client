@@ -8,11 +8,15 @@ const baseUrl = 'http://localhost:5050/users/login';
 
 class Login extends Component {
     state = {
-        isLoggedIn: false,
         isLoginError: false,
         errorMessage: '',
     };
 
+    componentDidMount(){
+      console.log("login mounted");
+      console.log("systemwide login state", this.props.userStatus);
+    }
+    
     handleLogin = (e) => {
       e.preventDefault();
       console.log(e);
@@ -36,9 +40,10 @@ class Login extends Component {
         })
         .then((response) => {
           console.log(response);
+          this.props.handleSystemWideLogIn();
+
           sessionStorage.setItem('token', response.data.token);
           this.setState({
-            isLoggedIn: true,
             userURL: "/dashboard/email"
           });
         })
@@ -49,7 +54,6 @@ class Login extends Component {
     };
 
     render(){
-      let allLoggedIn = this.props.handleSystemWideLogIn;
 
       return (
           <>
@@ -61,9 +65,9 @@ class Login extends Component {
                   <Input type="text" name="password" label="Password" />
                   <button className="login__button">Log In</button>
 
-                  {this.state.isLoggedIn && <div className="login__message">Logged in</div>}
-                  {this.state.isLoggedIn && <Link to={{pathname:"/dashboard/user", state: {isLoggedIn: true,}}}>
-                      <div className="login__message" onClick={() => allLoggedIn()}>Go to dashboard</div></Link>}
+                  {this.props.userStatus && <div className="login__message">Logged in</div>}
+                  {this.props.userStatus && <Link to="/dashboard/user">
+                      <div className="login__message" onClick={() => {this.props.handleSystemWideLogIn()}}>Go to dashboard</div></Link>}
                   {this.state.isLoginError && <div className="login__message">{this.state.errorMessage}</div>}
                   </form>
               </main>

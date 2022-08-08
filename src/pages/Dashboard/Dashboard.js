@@ -7,14 +7,11 @@ import ProgressBar from '../../components/ProgressBar/ProgressBar';
 class Dashboard extends Component {
   state = {
     error: ""
-  };git 
+  }
 
   componentDidMount(){
-    console.log("page mounted");
-
-    this.setState({
-      isLoggedIn : this.props.location.state.isLoggedIn
-    })
+    console.log("dashboard mounted");
+    console.log("systemwide login state", this.props.userStatus);
 
   }
 
@@ -26,7 +23,7 @@ class Dashboard extends Component {
       pattern : "user_pattern_recognition_progress"
     }
 
-    if(this.state.isLoggedIn){
+    if(this.props.userStatus === true){
       return (
           <>
             <h1>Welcome back, !</h1>

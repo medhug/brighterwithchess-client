@@ -17,7 +17,7 @@ class App extends React.Component {
   }
 
   componentDidMount(){
-    console.log("page mounted");
+    console.log("app mounted");
     console.log("system log in: ", this.state.systemWideLogIn)
     this.setState({
       pageDidMount: true,
@@ -41,8 +41,13 @@ class App extends React.Component {
             <Switch>
               <Route exact path="/" component={Landing}/>
               <Route path="/signup" component={Signup}/>
-              <Route path="/login"><Login handleSystemWideLogIn={this.handleSystemWideLogIn}/></Route>
-              <Route path="/dashboard/:id" component={Dashboard} />
+              <Route path="/login"><Login 
+                handleSystemWideLogIn={this.handleSystemWideLogIn}
+                userStatus={this.state.systemWideLogIn}/>
+              </Route>
+              <Route path="/dashboard/:id"><Dashboard 
+                userStatus={this.state.systemWideLogIn}/>
+              </Route> 
               <Route path="/dashboard/:id/learn" component={Learn}/>
               <Route path="/dashboard/:id/quiz" component={Quiz}/>
               <Route path="/dashboard/:id/learn/:category" />

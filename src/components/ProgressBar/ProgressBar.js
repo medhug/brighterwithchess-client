@@ -4,14 +4,12 @@ import ProgressBlock from "../ProgressBlock/ProgressBlock";
 function ProgressBar(props) {
     
     let tableName = props.skill; 
-    
-    console.log("database name: ", tableName);
 
     // import specific table from db
 
     let tableValues = [
         { "id" : "1",
-        "completed" : false},
+        "completed" : true},
         { "id" : "2",
         "completed" : false},
         { "id" : "3",
@@ -22,14 +20,17 @@ function ProgressBar(props) {
 
 
     return (
-      <>
-        {tableValues.map((block, index) => <ProgressBlock
-            key={block.id}
-            questionNum = {index + 1}
-            completed={block.completed}
-            />
-        )}
-      </>
+      <main className="main">
+        <h3>{tableName}</h3>
+        <div className="main__bar">
+            {tableValues.map((block, index) => <ProgressBlock
+                key={block.id}
+                questionNum = {index + 1}
+                completed={block.completed}
+                />
+            )}
+        </div>
+      </main>
     );
   }
   
