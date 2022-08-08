@@ -11,13 +11,27 @@ const signupUrl = `${baseUrl}/signup`;
 class Signup extends Component {
     state = {
         isSignedUp: false,
-        errorMessage: null,
+        error: false,
+        passwordMessage: null,
         success: false,
     };
 
     handleSignup = (e) => {
         e.preventDefault();
         console.log("signup clicked");
+
+        if(e.target.password.value !== e.target.password2.value){
+            this.setState({
+                passwordMessage : "Passwords don't match"
+            })
+            return
+        } else {
+            this.setState({
+                passwordMessage : null
+            })
+        }
+
+
         axios
             .post(signupUrl, {
             email: e.target.email.value,
@@ -51,6 +65,7 @@ class Signup extends Component {
                     <button className="signup__button">Sign up</button>
 
                     {this.state.success && <div className="signup__message">Signed up!</div>}
+                    {this.state.passwordMessage && <div className="signup__message">{"Passwords dont match!"}</div>}
                     {this.state.error && <div className="signup__message">{this.state.error}</div>}
                 </form>
             </main>

@@ -20,7 +20,6 @@ class Login extends Component {
         axios
           .post(loginUrl, {
             email: e.target.email.value,
-            name: e.target.username.value,
             password: e.target.password.value,
           })
           .then((response) => {
