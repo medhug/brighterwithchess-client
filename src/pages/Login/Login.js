@@ -2,8 +2,9 @@ import "../Login/Login.scss"
 import {Component} from 'react';
 import axios from 'axios';
 import Input from "../../components/Input/Input";
+import Dashboard from "../Dashboard/Dashboard";
 
-const baseUrl = 'http://localhost:8080';
+const baseUrl = 'http://localhost:5050';
 const loginUrl = `${baseUrl}/login`;
 
 
@@ -36,19 +37,22 @@ class Login extends Component {
     };
 
     render(){
-        const { isLoginError, errorMessage } = this.state;
         return (
             <>
                 <main className="login-page">
                     <h1>Login</h1>
-                    {isLoginError && <label style={{ color: 'red' }}>{errorMessage}</label>}
 
                     <form className="login" onSubmit={this.handleLogin}>
                     <Input type="text" name="email" label="Email" />
                     <Input type="text" name="password" label="Password" />
                     <button className="login__button">Log In</button>
+
+                    {this.state.isLoggedIn && <div className="login__message">Logged in</div>}
+                    {this.state.isLoginError && <div className="login__message">{this.state.errorMessage}</div>}
                     </form>
                 </main>
+
+                <div>{this.state.isLoggedIn && <Dashboard status={this.state.isLoggedIn}/>}</div>
             </>
         );  
     }
