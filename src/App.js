@@ -45,8 +45,8 @@ class App extends React.Component {
               <Route path="/dashboard/:id" component={Dashboard} />
               <Route path="/dashboard/:id/learn" component={Learn}/>
               <Route path="/dashboard/:id/quiz" component={Quiz}/>
-              <Route path="/dashboard/:id/learn/:id" />
-              <Route path="/dashboard/:id/quiz/:id"  />
+              <Route path="/dashboard/:id/learn/:category" />
+              <Route path="/dashboard/:id/quiz/:category"  />
             </Switch>
             <Header userStatus={this.state.systemWideLogIn}/>
           </BrowserRouter>
