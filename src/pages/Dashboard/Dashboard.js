@@ -17,29 +17,25 @@ class Dashboard extends Component {
 
   render(){
 
-    let skillTableFromDatabase = {
-      memory : "user_memory_progress",
-      calculate : "user_calculation_progress",
-      pattern : "user_pattern_recognition_progress"
-    }
-
     if(this.props.userStatus === true){
       return (
           <main className="dashboard">
-            <h1>Welcome back, !</h1>
-            <h2>better be logged in</h2>
-
-            <div>
-              <ProgressBar skill={skillTableFromDatabase.memory}/>
-              {/* <ProgressBar skill={skillTableFromDatabase.calculate}/>
-              <ProgressBar skill={skillTableFromDatabase.pattern}/> */}
+            <div className="dashboard-container">
+              <h1>Welcome back, !</h1>
+              <div className="dashboard-container__progressbars" >
+                <ProgressBar tableName={"Memory Progress"}/>
+                <ProgressBar tableName={"Calculate Progress"}/>
+                <ProgressBar tableName={"Pattern Progress"}/>
+              </div>
             </div>
           </main>
       );  
     } else {
       return (
         <main className="dashboard">
-          <h1>Not logged in</h1>
+          <div className="dashboard-container">
+            <h1>Not logged in</h1>
+          </div>
         </main>
       )
     }

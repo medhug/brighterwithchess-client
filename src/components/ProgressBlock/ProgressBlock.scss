@@ -1,16 +1,36 @@
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/variables.scss' as *;
+
 
 
 .block {
     width: 50px;
     height: 50px;
-    border: 2px solid black;
-    background-color: red;
+    margin-top: 1rem;
+    border: 1px solid black;
+    background-color: $emerald;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    font-size: 2rem;
 
     &--completed {
-        background-color: blue;
         width: 50px;
         height: 50px;
-        border: 2px solid black;
+        margin-top: 1rem;
+        border: 1px solid black;
+        background-color: $vividtangerine;
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: black;
+        font-size: 2rem;
     }
 
 }
+
+    
+

@@ -3,7 +3,7 @@ import ProgressBlock from "../ProgressBlock/ProgressBlock";
 
 function ProgressBar(props) {
     
-    let tableName = props.skill; 
+    let tableName = props.tableName; 
 
     // import specific table from db
 
@@ -17,6 +17,12 @@ function ProgressBar(props) {
         { "id" : "4",
         "completed" : false}
     ];
+
+    let skillTableFromDatabase = {
+      memory : "user_memory_progress",
+      calculate : "user_calculation_progress",
+      pattern : "user_pattern_recognition_progress"
+    }
 
 
     return (

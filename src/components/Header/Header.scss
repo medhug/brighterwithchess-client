@@ -2,21 +2,28 @@
 @use '../../styles/partials/variables.scss' as *;
 
 
-.navbar{
+
+.header{
     width: 100%;
-    background-color: $maximumyellowred;
-    height: 10rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
 
-
-    &__logo-container{
-        width: 70px;
-
-        &--image{
-            width: 100%;
+    &-navbar{
+        width: 100%;
+        background-color: $maximumyellowred;
+        height: 10rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+    
+    
+        &__logo-container{
+            width: 70px;
+    
+            &--image{
+                width: 100%;
+            }
         }
     }
+
+
 }

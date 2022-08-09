@@ -6,30 +6,34 @@ function Header({userStatus}) {
 
     if(userStatus === true){
         return (
-            <nav className="navbar">
+          <header className="header">
+            <nav className="header-navbar">
               <Link to="/dashboard/user">
-                <div className="navbar__logo-container">
-                  <img className="navbar__logo-container--image" src={knight} alt="knight by Hassan Pasha, unsplash" />
+                <div className="header-navbar__logo-container">
+                  <img className="header-navbar__logo-container--image" src={knight} alt="knight by Hassan Pasha, unsplash" />
                 </div> 
               </Link>
               <Link to="/dashboard/user">Dash</Link>
               <Link to="/learn">Learn</Link>
               <Link to="/quiz">Quiz</Link>
             </nav>
-          );
+          </header>
+        );
     } else {
         return (
-            <nav className="navbar">
+          <header className="header">
+            <nav className="header-navbar">
               <Link to="/">
-                <div className="navbar__logo-container">
-                  <img className="navbar__logo-container--image" src={knight} alt="knight by Hassan Pasha, unsplash" />
+                <div className="header-navbar__logo-container">
+                  <img className="header-navbar__logo-container--image" src={knight} alt="knight by Hassan Pasha, unsplash" />
                 </div> 
               </Link>
               <Link to="/">Home</Link>
               <Link to="/signup">Signup</Link>
               <Link to="/login">Login</Link>
             </nav>
-          );
+          </header>
+        );
     }
 
   }
