@@ -2,6 +2,7 @@ import '../Learn/Learn.scss';
 import {Component} from "react";
 import ChoiceBlock from '../../components/ChoiceBlock/ChoiceBlock';
 import { Link } from "react-router-dom";
+import NotLoggedIn from '../../components/NotLoggedIn/NotLoggedin';
 
 class Learn extends Component {
 
@@ -22,9 +23,7 @@ class Learn extends Component {
       );  
     } else {
       return (
-        <>
-          <h1>Not logged in</h1>
-        </>
+        <NotLoggedIn />
       )
     }
   }

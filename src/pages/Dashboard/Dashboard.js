@@ -2,6 +2,7 @@ import '../Dashboard/Dashboard.scss';
 import {Component} from 'react';
 // import axios from 'axios';
 import ProgressBar from '../../components/ProgressBar/ProgressBar';
+import NotLoggedIn from '../../components/NotLoggedIn/NotLoggedin';
 
 
 class Dashboard extends Component {
@@ -32,11 +33,7 @@ class Dashboard extends Component {
       );  
     } else {
       return (
-        <main className="dashboard">
-          <div className="dashboard-container">
-            <h1>Not logged in</h1>
-          </div>
-        </main>
+        <NotLoggedIn/>
       )
     }
   }

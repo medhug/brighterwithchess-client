@@ -1,0 +1,32 @@
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/variables.scss' as *;
+
+
+.notloggedin {
+    background-color: $emerald;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &-container{
+        width: 80%;
+        height: $min-height;
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+        background-color: white;
+        border-radius: 25px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        &__progressbars{
+            width: 80%;
+            height: 700px;
+        }
+
+    }
+
+}
