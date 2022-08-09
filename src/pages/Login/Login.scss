@@ -4,7 +4,7 @@
 
 .login-page {
     background-color: $emerald;
-    height: 600px;
+    min-height: $min-height;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -13,6 +13,8 @@
 }
 
 .login {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
     display: flex;
     flex-direction: column;
     width: 22rem;

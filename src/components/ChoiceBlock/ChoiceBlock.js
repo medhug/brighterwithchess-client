@@ -15,7 +15,6 @@ function ChoiceBlock(props) {
     }
 
     let buttonLabel= dictionary[category];
-    console.log("button label is: ", buttonLabel);
 
 
     return (

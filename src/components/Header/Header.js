@@ -14,9 +14,9 @@ function Header({userStatus}) {
                   <img className="header-navbar__logo-container--image" src={knight} alt="knight by Hassan Pasha, unsplash" />
                 </div> 
               </Link>
-              <Link to="/dashboard/user"><NavButton label={"Dash"}/></Link>
-              <Link to="/learn"><NavButton label={"Learn"}/></Link>
-              <Link to="/quiz"><NavButton label={"Quiz"}/></Link>
+              <Link to="/dashboard/user" style={{ textDecoration: 'none', color: 'black' }}><NavButton label={"Dash"}/></Link>
+              <Link to="/learn" style={{ textDecoration: 'none', color: 'black' }}><NavButton label={"Learn"}/></Link>
+              <Link to="/quiz" style={{ textDecoration: 'none', color: 'black' }}><NavButton label={"Quiz"}/></Link>
             </nav>
           </header>
         );
@@ -29,9 +29,9 @@ function Header({userStatus}) {
                   <img className="header-navbar__logo-container--image" src={knight} alt="knight by Hassan Pasha, unsplash" />
                 </div> 
               </Link>
-              <Link to="/"><NavButton label={"Home"}/></Link>
-              <Link to="/signup"><NavButton label={"Signup"}/></Link>
-              <Link to="/login"><NavButton label={"Login"}/></Link>
+              <Link to="/" style={{ textDecoration: 'none', color: 'black' }}><NavButton label={"Home"}/></Link>
+              <Link to="/signup" style={{ textDecoration: 'none', color: 'black' }}><NavButton label={"Signup"}/></Link>
+              <Link to="/login" style={{ textDecoration: 'none', color: 'black' }}><NavButton label={"Login"}/></Link>
             </nav>
           </header>
         );

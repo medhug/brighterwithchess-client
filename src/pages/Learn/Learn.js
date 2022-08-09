@@ -13,11 +13,10 @@ class Learn extends Component {
       return (
           <main className="learn">
             <div className="learn-container">
-              <h1>What would you like to learn?</h1>
-
-              <Link to="/learn/memory"><ChoiceBlock category={1}/></Link>
-              <Link to="/learn/calculation"><ChoiceBlock category={2}/></Link>
-              <Link to="/learn/patterns"><ChoiceBlock category={3}/></Link>
+              <h2 className="learn-container__title">What would you like to learn?</h2>
+              <Link style={{ textDecoration: 'none', color: 'black' }} to="/learn/memory"><ChoiceBlock category={1}/></Link>
+              <Link style={{ textDecoration: 'none', color: 'black' }} to="/learn/calculation"><ChoiceBlock category={2}/></Link>
+              <Link style={{ textDecoration: 'none', color: 'black' }} to="/learn/patterns"><ChoiceBlock category={3}/></Link>
             </div>
           </main>
       );  

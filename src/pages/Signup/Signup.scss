@@ -2,6 +2,7 @@
 @use '../../styles/partials/variables' as *;
 
 .signup-page {
+    min-height: 700px;
     background-color: $emerald;
     display: flex;
     flex-direction: column;
@@ -11,6 +12,8 @@
 }
 
 .signup {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
     display: flex;
     flex-direction: column;
     width: 22rem;
