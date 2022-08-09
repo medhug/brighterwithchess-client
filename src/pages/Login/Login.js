@@ -19,7 +19,7 @@ class Login extends Component {
     
     handleLogin = (e) => {
       e.preventDefault();
-      console.log(e.data);
+      //console.log(e);
 
       if( !e.target.email.value || !e.target.password.value){
         this.setState({
@@ -42,10 +42,8 @@ class Login extends Component {
           console.log(response);
           this.props.handleSystemWideLogIn();
 
-          sessionStorage.setItem('token', response.data.token);
-          // this.setState({
-          //   userURL: "/dashboard/email"
-          // });
+          localStorage.setItem('token', response.data.token);
+
         })
         .catch((err) => {
           console.log(err);
@@ -67,7 +65,7 @@ class Login extends Component {
 
                   {this.props.userStatus && <div className="login__message">Logged in</div>}
                   {this.props.userStatus && <Link to="/dashboard/user">
-                      <div className="login__message" onClick={() => {this.props.handleSystemWideLogIn()}}>Go to dashboard</div></Link>}
+                      <div className="login__message">Go to dashboard</div></Link>}
                   {this.state.isLoginError && <div className="login__message">{this.state.errorMessage}</div>}
                   </form>
               </main>

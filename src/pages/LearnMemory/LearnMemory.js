@@ -1,5 +1,6 @@
 import '../LearnMemory/LearnMemory.scss';
 import {Component} from "react";
+import NotLoggedIn from '../../components/NotLoggedIn/NotLoggedin';
 
 class LearnMemory extends Component {
 
@@ -18,9 +19,7 @@ class LearnMemory extends Component {
       );  
     } else {
       return (
-        <>
-          <h1>Not logged in</h1>
-        </>
+        <NotLoggedIn/>
       )
     }
   }

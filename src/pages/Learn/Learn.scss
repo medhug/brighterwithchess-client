@@ -3,6 +3,7 @@
 
 
 .learn {
+    margin-bottom: $header-height;
     background-color: $emerald;
     width: 100%;
     display: flex;
@@ -12,7 +13,6 @@
 
     &-container{
         width: 80%;
-        height: $min-height;
         margin-top: 3rem;
         margin-bottom: 3rem;
         background-color: white;

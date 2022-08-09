@@ -15,9 +15,10 @@ class Learn extends Component {
           <main className="learn">
             <div className="learn-container">
               <h2 className="learn-container__title">What would you like to learn?</h2>
-              <Link style={{ textDecoration: 'none', color: 'black' }} to="/learn/memory"><ChoiceBlock category={1}/></Link>
-              <Link style={{ textDecoration: 'none', color: 'black' }} to="/learn/calculation"><ChoiceBlock category={2}/></Link>
-              <Link style={{ textDecoration: 'none', color: 'black' }} to="/learn/patterns"><ChoiceBlock category={3}/></Link>
+              <Link to="/learn/memory" style={{ textDecoration: 'none', color: 'black' }}><ChoiceBlock category={1}/></Link>
+              <Link to="/learn/calculation" style={{ textDecoration: 'none', color: 'black' }}><ChoiceBlock category={2}/></Link>
+              <Link to="/learn/patterns" style={{ textDecoration: 'none', color: 'black' }}><ChoiceBlock category={3}/></Link>
+
             </div>
           </main>
       );  

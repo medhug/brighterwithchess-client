@@ -5,6 +5,10 @@
 
 .header{
     width: 100%;
+    height: $header-height;
+    position:fixed;
+    bottom: 0px;
+    left: 0px;
 
     &-navbar{
         width: 100%;

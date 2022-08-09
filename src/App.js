@@ -49,14 +49,16 @@ class App extends React.Component {
               <Route path="/dashboard/:id"><Dashboard 
                 userStatus={this.state.systemWideLogIn}/>
               </Route> 
-              <Route path="/learn"><Learn 
-                userStatus={this.state.systemWideLogIn}/>
-              </Route>
               <Route path="/quiz"><Quiz 
                 userStatus={this.state.systemWideLogIn}/>
               </Route>
-              <Route path="/learn/memory" component={LearnMemory}/>
+              <Route path="/learn/memory"><LearnMemory 
+                userStatus={this.state.systemWideLogIn}/>
+              </Route>
               <Route path="/quiz/memory" component={Quiz} />
+              <Route path="/learn"><Learn 
+                userStatus={this.state.systemWideLogIn}/>
+              </Route>
             </Switch>
             <Header userStatus={this.state.systemWideLogIn}/>
           </BrowserRouter>
