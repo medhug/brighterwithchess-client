@@ -4,6 +4,7 @@
 
 .login-page {
     background-color: $emerald;
+    height: 600px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -24,8 +25,8 @@
     &__button {
         margin-top: 1rem;
 
-        background-color: $white;
-        color: black;
+        background-color: $copperred;
+        color: white;
         border-radius: 0.5rem;
         padding: 0.5rem;
         font-size: inherit;
