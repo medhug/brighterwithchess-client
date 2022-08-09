@@ -1,10 +1,10 @@
 import "../NavButton/NavButton.scss";
-import addUser from '../../assets/icons/adduser_icon.svg';
-import bolt from '../../assets/icons/bolt_icon.svg';
-import cancel from '../../assets/icons/cancel_icon.svg';
-import home from '../../assets/icons/home_icon.svg';
-import login from '../../assets/icons/login_icon.svg';
-import star from '../../assets/icons/star_icon.svg';
+import addUser from '../../assets/icons/adduser.svg';
+import bolt from '../../assets/icons/bolt.svg';
+import cancel from '../../assets/icons/cancel.svg';
+import home from '../../assets/icons/home.svg';
+import login from '../../assets/icons/login.svg';
+import star from '../../assets/icons/star.svg';
 
 
 
