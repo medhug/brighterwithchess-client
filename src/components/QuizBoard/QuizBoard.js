@@ -165,8 +165,10 @@ export default function QuizBoard( {initialboard} ) {
         }) => (
           <Chessboard
             id="humanVsHuman"
-            width={320}
+            width={325}
             position={position}
+            lightSquareStyle={ {backgroundColor: 'tan'} }
+            darkSquareStyle={ {backgroundColor: 'copperred'} }
             onDrop={onDrop}
             onMouseOverSquare={onMouseOverSquare}
             onMouseOutSquare={onMouseOutSquare}

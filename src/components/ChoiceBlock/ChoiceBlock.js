@@ -8,10 +8,10 @@ function ChoiceBlock(props) {
     let dictionary ={
         1 : "Learn Memory",
         2 : "Learn Calculation",
-        3 : "Learn Pattern Recognition",
+        3 : "Learn Patterns",
         4 : "Quiz Memory",
         5 : "Quiz Calculation",
-        6 : "Quiz Pattern Recognition",
+        6 : "Quiz Patterns",
     }
 
     let buttonLabel= dictionary[category];
@@ -19,7 +19,7 @@ function ChoiceBlock(props) {
 
     return (
         <div className="button">
-            <p>{buttonLabel}</p>
+            <p className="button__label">{buttonLabel}</p>
         </div>
     );
   }
