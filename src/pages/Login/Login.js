@@ -42,7 +42,7 @@ class Login extends Component {
           console.log(response);
           this.props.handleSystemWideLogIn();
 
-          localStorage.setItem('token', response.data.token);
+          sessionStorage.setItem('token', response.data.token);
 
         })
         .catch((err) => {

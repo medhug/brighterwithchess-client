@@ -8,6 +8,8 @@ import Login from "./pages/Login/Login";
 import Learn from "./pages/Learn/Learn";
 import LearnMemory from "./pages/LearnMemory/LearnMemory";
 import Quiz from "./pages/Quiz/Quiz";
+import QuizMemory from "./pages/QuizMemory/QuizMemory";
+import UnderConstruction from "./pages/UnderConstruction/UnderConstruction";
 
 
 class App extends React.Component {
@@ -49,14 +51,17 @@ class App extends React.Component {
               <Route path="/dashboard/:id"><Dashboard 
                 userStatus={this.state.systemWideLogIn}/>
               </Route> 
-              <Route path="/quiz"><Quiz 
+              <Route exact path="/learn/memory"><LearnMemory 
                 userStatus={this.state.systemWideLogIn}/>
               </Route>
-              <Route path="/learn/memory"><LearnMemory 
+              <Route path="/quiz/memory"><QuizMemory 
                 userStatus={this.state.systemWideLogIn}/>
               </Route>
-              <Route path="/quiz/memory" component={Quiz} />
+              <Route exact path="/construction" component={UnderConstruction} />
               <Route path="/learn"><Learn 
+                userStatus={this.state.systemWideLogIn}/>
+              </Route>
+              <Route path="/quiz"><Quiz 
                 userStatus={this.state.systemWideLogIn}/>
               </Route>
             </Switch>
