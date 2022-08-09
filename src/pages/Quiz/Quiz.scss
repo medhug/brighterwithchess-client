@@ -1,0 +1,38 @@
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/variables' as *;
+
+
+.quiz {
+    margin-bottom: $header-height;
+    background-color: $emerald;
+    width: 100%;
+    min-height: 604px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &-container{
+        width: 80%;
+        height: $min-height;
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+        background-color: white;
+        border-radius: 25px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        &__title {
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            width: 80%;
+
+        }
+    }
+}
+
+// .router-link{
+//     all: unset;
+// }

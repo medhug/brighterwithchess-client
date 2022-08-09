@@ -43,7 +43,10 @@ class Login extends Component {
           this.props.handleSystemWideLogIn();
 
           sessionStorage.setItem('token', response.data.token);
-
+          this.setState({
+            isLoginError : null
+          })
+          
         })
         .catch((err) => {
           console.log(err);

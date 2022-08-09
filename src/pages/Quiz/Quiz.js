@@ -1,4 +1,4 @@
-import '../Learn/Learn.scss';
+import '../Quiz/Quiz.scss';
 import {Component} from "react";
 import ChoiceBlock from '../../components/ChoiceBlock/ChoiceBlock';
 import { Link } from "react-router-dom";
