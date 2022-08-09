@@ -23,9 +23,7 @@ function NavButton(props) {
         Quiz : QuizIcon,
     }
 
-    console.log("the label is: ", label);
     iconName= table[label];
-    console.log("name of icon", iconName);
 
     return (
         <main className="NavButton">
