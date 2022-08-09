@@ -6,6 +6,7 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import Signup from "./pages/Signup/Signup";
 import Login from "./pages/Login/Login";
 import Learn from "./pages/Learn/Learn";
+import LearnMemory from "./pages/LearnMemory/LearnMemory";
 import Quiz from "./pages/Quiz/Quiz";
 
 
@@ -54,8 +55,8 @@ class App extends React.Component {
               <Route path="/quiz"><Quiz 
                 userStatus={this.state.systemWideLogIn}/>
               </Route>
-              <Route path="/learn/:category" />
-              <Route path="/quiz/:category"  />
+              <Route path="/learn/memory" component={LearnMemory}/>
+              <Route path="/quiz/memory" component={Quiz} />
             </Switch>
             <Header userStatus={this.state.systemWideLogIn}/>
           </BrowserRouter>
