@@ -1,6 +1,7 @@
 import '../Header/Header.scss';
 import {Link} from "react-router-dom";
 import knight from "../../assets/images/knight.png";
+import NavButton from '../NavButton/NavButton';
 
 function Header({userStatus}) {
 
@@ -13,9 +14,9 @@ function Header({userStatus}) {
                   <img className="header-navbar__logo-container--image" src={knight} alt="knight by Hassan Pasha, unsplash" />
                 </div> 
               </Link>
-              <Link to="/dashboard/user">Dash</Link>
-              <Link to="/learn">Learn</Link>
-              <Link to="/quiz">Quiz</Link>
+              <Link to="/dashboard/user"><NavButton label={"Dash"}/></Link>
+              <Link to="/learn"><NavButton label={"Learn"}/></Link>
+              <Link to="/quiz"><NavButton label={"Quiz"}/></Link>
             </nav>
           </header>
         );
@@ -28,9 +29,9 @@ function Header({userStatus}) {
                   <img className="header-navbar__logo-container--image" src={knight} alt="knight by Hassan Pasha, unsplash" />
                 </div> 
               </Link>
-              <Link to="/">Home</Link>
-              <Link to="/signup">Signup</Link>
-              <Link to="/login">Login</Link>
+              <Link to="/"><NavButton label={"Home"}/></Link>
+              <Link to="/signup"><NavButton label={"Signup"}/></Link>
+              <Link to="/login"><NavButton label={"Login"}/></Link>
             </nav>
           </header>
         );

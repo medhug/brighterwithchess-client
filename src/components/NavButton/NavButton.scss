@@ -1,0 +1,27 @@
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/variables' as *;
+
+
+.NavButton {
+    background-color: $ceruleancrayola;
+    width: 75px;
+    height: 75px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+
+    &-container{
+        width: 100%;
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+        border-radius: 25px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+    }
+}
