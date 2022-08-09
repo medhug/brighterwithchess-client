@@ -1,12 +1,10 @@
-*{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/variables.scss' as *;
+
 
 .navbar{
     width: 100%;
-    background-color: #FC967E;
+    background-color: $maximumyellowred;
     height: 10rem;
     display: flex;
     flex-direction: row;

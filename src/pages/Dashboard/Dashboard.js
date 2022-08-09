@@ -25,7 +25,7 @@ class Dashboard extends Component {
 
     if(this.props.userStatus === true){
       return (
-          <>
+          <main className="dashboard">
             <h1>Welcome back, !</h1>
             <h2>better be logged in</h2>
 
@@ -34,13 +34,13 @@ class Dashboard extends Component {
               {/* <ProgressBar skill={skillTableFromDatabase.calculate}/>
               <ProgressBar skill={skillTableFromDatabase.pattern}/> */}
             </div>
-          </>
+          </main>
       );  
     } else {
       return (
-        <>
+        <main className="dashboard">
           <h1>Not logged in</h1>
-        </>
+        </main>
       )
     }
   }

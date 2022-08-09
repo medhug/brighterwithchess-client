@@ -19,7 +19,7 @@ class Login extends Component {
     
     handleLogin = (e) => {
       e.preventDefault();
-      console.log(e);
+      console.log(e.data);
 
       if( !e.target.email.value || !e.target.password.value){
         this.setState({
@@ -43,9 +43,9 @@ class Login extends Component {
           this.props.handleSystemWideLogIn();
 
           sessionStorage.setItem('token', response.data.token);
-          this.setState({
-            userURL: "/dashboard/email"
-          });
+          // this.setState({
+          //   userURL: "/dashboard/email"
+          // });
         })
         .catch((err) => {
           console.log(err);

@@ -1,6 +1,5 @@
 import '../Header/Header.scss';
 import {Link} from "react-router-dom";
-import logo from "../../assets/images/knightlogo.jpg";
 import knight from "../../assets/images/knight.png";
 
 function Header({userStatus}) {
@@ -10,12 +9,12 @@ function Header({userStatus}) {
             <nav className="navbar">
               <Link to="/dashboard/user">
                 <div className="navbar__logo-container">
-                  <img className="navbar__logo-container--image" src={logo} alt="knight by Hassan Pasha, unsplash" />
+                  <img className="navbar__logo-container--image" src={knight} alt="knight by Hassan Pasha, unsplash" />
                 </div> 
               </Link>
-              <Link to="/dashboard/user">dash</Link>
-              <Link to="/learn">learn</Link>
-              <Link to="/quiz">quiz</Link>
+              <Link to="/dashboard/user">Dash</Link>
+              <Link to="/learn">Learn</Link>
+              <Link to="/quiz">Quiz</Link>
             </nav>
           );
     } else {
