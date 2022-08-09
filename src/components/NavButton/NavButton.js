@@ -31,7 +31,7 @@ function NavButton(props) {
                 <div className="NavButton-container__icon">
                     <img className="landing-container__icon--img" src={iconName} alt={text}/>
                 </div>
-                <p>{label}</p>
+                <p className="NavButton-container__label">{label}</p>
             </div>
         </main>
     );
