@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Chess } from "chess.js"; 
 import Chessboard from "chessboardjsx";
-import {useState, useEffect} from 'react';
 
 
 let stateObj;
@@ -16,6 +15,7 @@ class HumanVsHuman extends Component {
 
   state = {
   };
+
 
   componentDidMount() {
     //console.log(this.props.initialboard);
@@ -33,8 +33,14 @@ class HumanVsHuman extends Component {
     if(historyisEmpty){
       pickupStateFen = this.state.fen;
       console.log("first pickup", pickupStateFen);
+      this.handleStuff();
     }
     
+  }
+
+  handleStuff = () => {
+    console.log("stuffworks");
+    this.props.handleUserAnswer(true);
   }
 
   // keep clicked square style and remove hint squares
@@ -167,57 +173,68 @@ class HumanVsHuman extends Component {
   }
 }
 
-export default function QuizBoard( {initialboard,handleUserAnswer} ) {
-    console.log("quizboard runs");
+class QuizBoard extends Component {
+  state={
+  }
 
-    const [pickedupStateFEN] = useState(pickupStateFen);
-    useEffect(()=>{
-      console.log("useffect ran! :)");
+  componentDidMount(){
+    console.log("running component did MOUNT inside quizboard");
+    console.log(pickupStateFen, " vs ", question1answer);
+  }
 
-      if(pickedupStateFEN === question1answer.fen){
-        console.log("handlefunction triggered")
-        handleUserAnswer();
-      }
-    }, [pickedupStateFEN]);
-    
-  return (
-    <div>
-      <HumanVsHuman initialboard={initialboard}>
-        {({
-          position,
-          onDrop,
-          onMouseOverSquare,
-          onMouseOutSquare,
-          squareStyles,
-          dropSquareStyle,
-          onDragOverSquare,
-          onSquareClick,
-          onSquareRightClick,
-        }) => (
-          <Chessboard
-            id="humanVsHuman"
-            width={325}
-            position={position}
-            lightSquareStyle={ {backgroundColor: 'tan'} }
-            darkSquareStyle={ {backgroundColor: 'copperred'} }
-            onDrop={onDrop}
-            onMouseOverSquare={onMouseOverSquare}
-            onMouseOutSquare={onMouseOutSquare}
-            boardStyle={{
-              borderRadius: "5px",
-              boxShadow: `0 5px 15px rgba(0, 0, 0, 0.5)`
-            }}
-            squareStyles={squareStyles}
-            dropSquareStyle={dropSquareStyle}
-            onDragOverSquare={onDragOverSquare}
-            onSquareClick={onSquareClick}
-            onSquareRightClick={onSquareRightClick}
-          />
-        )}
-      </HumanVsHuman>
-    </div>
-  );
+  componentDidUpdate(){
+    console.log("running component did UPDATE inside quizboard");
+    console.log(pickupStateFen, " vs ", question1answer);
+    if(pickupStateFen === question1answer.fen){
+      console.log("handlefunction triggered")
+      this.props.handleUserAnswer();
+    }
+  }
+
+  render(){
+    return (
+      <div>
+        <HumanVsHuman initialboard={this.props.initialboard} handleUserAnswer={this.props.handleUserAnswer}>
+          {({
+            position,
+            onDrop,
+            onMouseOverSquare,
+            onMouseOutSquare,
+            squareStyles,
+            dropSquareStyle,
+            onDragOverSquare,
+            onSquareClick,
+            onSquareRightClick,
+          }) => (
+            <Chessboard
+              id="humanVsHuman"
+              width={325}
+              position={position}
+              lightSquareStyle={ {backgroundColor: 'tan'} }
+              darkSquareStyle={ {backgroundColor: 'copperred'} }
+              onDrop={onDrop}
+              onMouseOverSquare={onMouseOverSquare}
+              onMouseOutSquare={onMouseOutSquare}
+              boardStyle={{
+                borderRadius: "5px",
+                boxShadow: `0 5px 15px rgba(0, 0, 0, 0.5)`
+              }}
+              squareStyles={squareStyles}
+              dropSquareStyle={dropSquareStyle}
+              onDragOverSquare={onDragOverSquare}
+              onSquareClick={onSquareClick}
+              onSquareRightClick={onSquareRightClick}
+            />
+          )}
+        </HumanVsHuman>
+      </div>
+    );
+
+  }
 }
+
+export default QuizBoard;
+
 
 const squareStyling = ({ pieceSquare, history }) => {
   const sourceSquare = history.length && history[history.length - 1].from;
