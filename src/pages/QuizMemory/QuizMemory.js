@@ -2,6 +2,7 @@ import '../QuizMemory/QuizMemory.scss';
 import React, { Component } from 'react';
 import QuizBoard from '../../components/QuizBoard/QuizBoard';
 import NotLoggedIn from '../../components/NotLoggedIn/NotLoggedin';
+import { Link } from 'react-router-dom';
 
 
 const question1state= {"fen":"4k3/p6b/1p6/4P3/5P2/8/8/B3K3 w - - 0 1","dropSquareStyle":{},"squareStyles":{},"pieceSquare":"","square":"","history":[]};
@@ -10,7 +11,8 @@ const question1state= {"fen":"4k3/p6b/1p6/4P3/5P2/8/8/B3K3 w - - 0 1","dropSquar
 class QuizMemory extends Component {
   state = {
     messageYes : false,
-    messageNo : false
+    messageNo : false,
+    attempt: 0
   }
 
   handleUserAnswer = (response) => {
@@ -36,7 +38,7 @@ class QuizMemory extends Component {
   // }
   render(){
 
-  if(true){
+  if(this.props.userStatus === true){
     return (
         <main className="quizmemory">
           <div className="quizmemory-container">
@@ -46,6 +48,7 @@ class QuizMemory extends Component {
               <QuizBoard initialboard = {question1state} handleUserAnswer={this.handleUserAnswer}/>
               {this.state.messageYes? <div className="messageYes">You did it!</div> : <></>}
               {this.state.messageNo? <div className="messageNo">That's not correct...</div> : <></> }
+              {this.state.messageNo?<Link to="/quiz"><button>Try Again</button> </Link>: <></> }
               <h3 className="quizmemory-container__questionbox--prompt">Question 1: Remember how bishops move? Click and drop the white bishop to the farthest square that it can move. White to move</h3>
             </div>
 
