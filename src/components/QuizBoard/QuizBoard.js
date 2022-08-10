@@ -6,25 +6,35 @@ import Chessboard from "chessboardjsx";
 
 
 let stateObj;
-let isEmpty;
+let historyisEmpty;
+let pickupStateFen;
+
+const question1answer={"fen":"4k3/p6b/1p6/4P3/3B1P2/8/8/4K3 b - - 1 1"}
 
 class HumanVsHuman extends Component {
   static propTypes = { children: PropTypes.func };
 
   state = {
-    history: []
   };
 
   componentDidMount() {
     //console.log(this.props.initialboard);
-
+    console.log("mounted");
     this.setState(
       this.props.initialboard
     )
     this.game = new Chess(this.props.initialboard.fen);
 
-    isEmpty = Object.keys(stateObj).length === 0;
+    historyisEmpty = stateObj ? false : undefined;
+  }
 
+  componentDidUpdate(){
+    historyisEmpty = stateObj.length > 0;
+    if(historyisEmpty){
+      pickupStateFen = this.state.fen;
+      console.log(pickupStateFen);
+    }
+    
   }
 
   // keep clicked square style and remove hint squares
@@ -136,9 +146,10 @@ class HumanVsHuman extends Component {
     });
 
   render() {
-    console.log("------>", JSON.stringify(this.state.history));
+    console.log("------>", JSON.stringify(this.state));
     stateObj = this.state.history;
-    console.log("is empty: ", isEmpty);
+    console.log("current history", stateObj);
+    console.log("is history empty: ", historyisEmpty);
 
     const { fen, dropSquareStyle, squareStyles } = this.state;
 
@@ -158,7 +169,8 @@ class HumanVsHuman extends Component {
 
 export default function QuizBoard( {initialboard,handleUserAnswer} ) {
 
-     if(!isEmpty){
+     if(!historyisEmpty){
+      console.log("handlefunction triggered")
       handleUserAnswer(1,2);
     }
   return (

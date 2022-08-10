@@ -8,7 +8,7 @@ class UnderConstruction extends Component {
       return (
         <main className="notloggedin">
           <div className="notloggedin-container">
-            <h1>This page is under construction...</h1>
+            <h1>Need to finish memory to unlock...</h1>
           </div>
         </main>
       )
