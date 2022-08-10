@@ -22,7 +22,7 @@ class Dashboard extends Component {
       return (
           <main className="dashboard">
             <div className="dashboard-container">
-              <h1>Welcome back, !</h1>
+              <h1>Welcome back, Hugo!</h1>
               <div className="dashboard-container__progressbars" >
                 <ProgressBar tableName={"Memory Progress"}/>
                 <ProgressBar tableName={"Calculate Progress"}/>

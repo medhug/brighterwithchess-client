@@ -26,10 +26,16 @@ class HumanVsHuman extends Component {
     historyObjHasContent = historyObj ? false : undefined;
   }
 
-  componentDidUpdate(){
+  componentDidUpdate( _prevProps , prevState){
     historyObjHasContent = historyObj.length > 0;
     //console.log("history has content", historyObjHasContent);
-    if(historyObjHasContent){
+
+    let oldHistory = prevState.history;
+    console.log(oldHistory);
+
+    if(prevState.history === this.state.history ){
+        return
+    } else {
       pickupStateFen = this.state.fen;
       this.handleBoardAnswer();
     }
