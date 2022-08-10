@@ -33,11 +33,15 @@ class HumanVsHuman extends Component {
     let oldHistory = prevState.history;
     console.log(oldHistory);
 
-    if(prevState.history === this.state.history ){
-        return
-    } else {
+    if(this.state.history.length === 0){
+      return
+    }
+
+    if(prevState.history !== this.state.history ){
       pickupStateFen = this.state.fen;
       this.handleBoardAnswer();
+    } else {
+        return ;
     }
     
   }
