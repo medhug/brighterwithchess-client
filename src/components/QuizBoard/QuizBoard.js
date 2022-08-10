@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Chess } from "chess.js"; 
 import Chessboard from "chessboardjsx";
-
+import {useState, useEffect} from 'react';
 
 
 let stateObj;
@@ -19,7 +19,7 @@ class HumanVsHuman extends Component {
 
   componentDidMount() {
     //console.log(this.props.initialboard);
-    console.log("mounted");
+    //console.log("mounted");
     this.setState(
       this.props.initialboard
     )
@@ -32,7 +32,7 @@ class HumanVsHuman extends Component {
     historyisEmpty = stateObj.length > 0;
     if(historyisEmpty){
       pickupStateFen = this.state.fen;
-      console.log(pickupStateFen);
+      console.log("first pickup", pickupStateFen);
     }
     
   }
@@ -146,10 +146,10 @@ class HumanVsHuman extends Component {
     });
 
   render() {
-    console.log("------>", JSON.stringify(this.state));
+    //console.log("------>", JSON.stringify(this.state));
     stateObj = this.state.history;
-    console.log("current history", stateObj);
-    console.log("is history empty: ", historyisEmpty);
+    //console.log("current history", stateObj);
+    //console.log("is history empty: ", historyisEmpty);
 
     const { fen, dropSquareStyle, squareStyles } = this.state;
 
@@ -168,11 +168,18 @@ class HumanVsHuman extends Component {
 }
 
 export default function QuizBoard( {initialboard,handleUserAnswer} ) {
+    console.log("quizboard runs");
 
-     if(!historyisEmpty){
-      console.log("handlefunction triggered")
-      handleUserAnswer(1,2);
-    }
+    const [pickedupStateFEN] = useState(pickupStateFen);
+    useEffect(()=>{
+      console.log("useffect ran! :)");
+
+      if(pickedupStateFEN === question1answer.fen){
+        console.log("handlefunction triggered")
+        handleUserAnswer();
+      }
+    }, [pickedupStateFEN]);
+    
   return (
     <div>
       <HumanVsHuman initialboard={initialboard}>
