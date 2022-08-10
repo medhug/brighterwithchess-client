@@ -11,19 +11,16 @@ const question1state= {"fen":"4k3/p6b/1p6/4P3/5P2/8/8/B3K3 w - - 0 1","dropSquar
 
 
 function handleUserAnswer(response){
+  console.log("found true?", response);
 
-      console.log("found true?", response);
-
-  // if(response === true){
-  //   console.log("you got it right!");
-  //   console.log("currently q1Congrats is: ", q1Congrats)
-  //   q1Congrats = true;
-  // } 
-  // if(response === false){
-  //   console.log("that's not correct...");
-  //   console.log("currently q1TryAgain is: ", q1TryAgain)
-  //   q1TryAgain = true;
-  // }
+  if(response === true){
+    console.log(q1Congrats);
+    q1Congrats = true;
+  } 
+  if(response === false){
+    console.log(q1TryAgain);
+    q1TryAgain = true;
+  }
 }
 
 function QuizMemory(props) {
@@ -36,6 +33,8 @@ function QuizMemory(props) {
               <div className="quizmemory-container__questionbox">
                 <h3 className="quizmemory-container__questionbox--prompt">Question 1: Remember how bishops move? Drag the white bishop to the farthest square that it can move. White to move</h3>
                 <QuizBoard initialboard = {question1state} handleUserAnswer={handleUserAnswer}/>
+                {{q1Congrats} && <div className="messageYes">You did it!</div>}
+                {{q1TryAgain} && <div className="messageNo">Please try again...</div>}
               </div>
 
             </div>

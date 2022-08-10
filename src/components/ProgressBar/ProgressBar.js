@@ -9,7 +9,7 @@ function ProgressBar(props) {
 
     let tableValues = [
         { "id" : "1",
-        "completed" : true},
+        "completed" : false},
         { "id" : "2",
         "completed" : false},
         { "id" : "3",

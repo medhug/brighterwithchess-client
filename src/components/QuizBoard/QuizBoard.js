@@ -4,8 +4,8 @@ import { Chess } from "chess.js";
 import Chessboard from "chessboardjsx";
 
 
-let stateObj;
-let historyisEmpty;
+let historyObj;
+let historyObjHasContent;
 let pickupStateFen;
 
 const question1answer={"fen":"4k3/p6b/1p6/4P3/3B1P2/8/8/4K3 b - - 1 1"}
@@ -16,36 +16,35 @@ class HumanVsHuman extends Component {
   state = {
   };
 
-
   componentDidMount() {
     //console.log(this.props.initialboard);
-    //console.log("mounted");
     this.setState(
       this.props.initialboard
     )
     this.game = new Chess(this.props.initialboard.fen);
 
-    historyisEmpty = stateObj ? false : undefined;
+    historyObjHasContent = historyObj ? false : undefined;
   }
 
   componentDidUpdate(){
-    historyisEmpty = stateObj.length > 0;
-    if(historyisEmpty){
+    historyObjHasContent = historyObj.length > 0;
+    //console.log("history has content", historyObjHasContent);
+    if(historyObjHasContent){
       pickupStateFen = this.state.fen;
-      console.log("first pickup", pickupStateFen);
-      this.handleStuff();
+      this.handleBoardAnswer();
     }
     
   }
 
-  handleStuff = () => {
-    console.log("stuffworks");
+  handleBoardAnswer = () => {
+    //console.log("board answer tested");
 
     if(pickupStateFen === question1answer.fen){
       this.props.handleUserAnswer(true);
+    } else {
+      console.log("boards don't match");
+      this.props.handleUserAnswer(false);
     }
-
-    
   }
 
   // keep clicked square style and remove hint squares
@@ -157,10 +156,8 @@ class HumanVsHuman extends Component {
     });
 
   render() {
-    //console.log("------>", JSON.stringify(this.state));
-    stateObj = this.state.history;
-    //console.log("current history", stateObj);
-    //console.log("is history empty: ", historyisEmpty);
+    historyObj = this.state.history;
+    //console.log("history object", historyObj);
 
     const { fen, dropSquareStyle, squareStyles } = this.state;
 
@@ -183,17 +180,7 @@ class QuizBoard extends Component {
   }
 
   componentDidMount(){
-    console.log("running component did MOUNT inside quizboard");
-    console.log(pickupStateFen, " vs ", question1answer);
-  }
-
-  componentDidUpdate(){
-    console.log("running component did UPDATE inside quizboard");
-    console.log(pickupStateFen, " vs ", question1answer);
-    if(pickupStateFen === question1answer.fen){
-      console.log("handlefunction triggered")
-      this.props.handleUserAnswer();
-    }
+    console.log("quizboard mounted");
   }
 
   render(){
