@@ -3,11 +3,16 @@ import PropTypes from 'prop-types';
 import { Chess } from "chess.js"; 
 import Chessboard from "chessboardjsx";
 
+
+
+let stateObj;
+let isEmpty;
+
 class HumanVsHuman extends Component {
   static propTypes = { children: PropTypes.func };
 
   state = {
-    
+    history: []
   };
 
   componentDidMount() {
@@ -17,6 +22,8 @@ class HumanVsHuman extends Component {
       this.props.initialboard
     )
     this.game = new Chess(this.props.initialboard.fen);
+
+    isEmpty = Object.keys(stateObj).length === 0;
 
   }
 
@@ -129,7 +136,10 @@ class HumanVsHuman extends Component {
     });
 
   render() {
-    console.log("------>", JSON.stringify(this.state));
+    console.log("------>", JSON.stringify(this.state.history));
+    stateObj = this.state.history;
+    console.log("is empty: ", isEmpty);
+
     const { fen, dropSquareStyle, squareStyles } = this.state;
 
     return this.props.children({
@@ -146,9 +156,11 @@ class HumanVsHuman extends Component {
   }
 }
 
-export default function QuizBoard( {initialboard} ) {
-  console.log(initialboard);
+export default function QuizBoard( {initialboard,handleUserAnswer} ) {
 
+     if(!isEmpty){
+      handleUserAnswer(1,2);
+    }
   return (
     <div>
       <HumanVsHuman initialboard={initialboard}>
