@@ -40,7 +40,12 @@ class HumanVsHuman extends Component {
 
   handleStuff = () => {
     console.log("stuffworks");
-    this.props.handleUserAnswer(true);
+
+    if(pickupStateFen === question1answer.fen){
+      this.props.handleUserAnswer(true);
+    }
+
+    
   }
 
   // keep clicked square style and remove hint squares
