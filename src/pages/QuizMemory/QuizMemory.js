@@ -48,8 +48,8 @@ class QuizMemory extends Component {
               <QuizBoard initialboard = {question1state} handleUserAnswer={this.handleUserAnswer}/>
               {this.state.messageYes? <div className="messageYes">You did it!</div> : <></>}
               {this.state.messageNo? <div className="messageNo">That's not correct...</div> : <></> }
-              {this.state.messageNo?<Link to="/quiz"><button>Try Again</button> </Link>: <></> }
-              <h3 className="quizmemory-container__questionbox--prompt">Question 1: Remember how bishops move? Click and drop the white bishop to the farthest square that it can move. White to move</h3>
+              {this.state.messageNo?<button className="reloadbutton" onClick={() => {window.location.reload();}}>Try Again</button> : <></> }
+              <h3 className="quizmemory-container__questionbox--prompt">Question 1: What is the farthest square that the white bishop can move?</h3>
             </div>
 
           </div>
