@@ -17,6 +17,8 @@ class QuizMemory extends Component {
     console.log("found true?", response);
 
     if(response === true){
+      this.props.handleProgressBars(true,0,0);
+
       this.setState({
         messageYes : true
       })

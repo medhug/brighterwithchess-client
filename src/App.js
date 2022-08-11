@@ -11,6 +11,27 @@ import Quiz from "./pages/Quiz/Quiz";
 import QuizMemory from "./pages/QuizMemory/QuizMemory";
 import UnderConstruction from "./pages/UnderConstruction/UnderConstruction";
 
+let tableValuesAll = [
+  [
+    { id: "1", completed: false },
+    { id: "2", completed: false },
+    { id: "3", completed: false },
+    { id: "4", completed: false },
+  ],
+  [
+    { id: "1", completed: false },
+    { id: "2", completed: false },
+    { id: "3", completed: false },
+    { id: "4", completed: false },
+  ],
+  [
+    { id: "1", completed: false },
+    { id: "2", completed: false },
+    { id: "3", completed: false },
+    { id: "4", completed: false },
+  ],
+];
+
 class App extends React.Component {
   state = {
     user: null,
@@ -41,6 +62,13 @@ class App extends React.Component {
     });
   };
 
+  handleProgressBars = (status, skill, question) => {
+    console.log("handle progress bars");
+    console.log(tableValuesAll[skill][0].completed);
+    tableValuesAll[skill][0].completed = true;
+    //tableValuesAll[skill]
+  };
+
   render() {
     if (this.state.pageDidMount) {
       return (
@@ -56,13 +84,19 @@ class App extends React.Component {
                 />
               </Route>
               <Route path="/dashboard/:id">
-                <Dashboard userStatus={this.state.systemWideLogIn} />
+                <Dashboard
+                  userStatus={this.state.systemWideLogIn}
+                  tableValuesAll={tableValuesAll}
+                />
               </Route>
               <Route exact path="/learn/memory">
                 <LearnMemory userStatus={this.state.systemWideLogIn} />
               </Route>
               <Route path="/quiz/memory">
-                <QuizMemory userStatus={this.state.systemWideLogIn} />
+                <QuizMemory
+                  userStatus={this.state.systemWideLogIn}
+                  handleProgressBars={this.handleProgressBars}
+                />
               </Route>
               <Route exact path="/construction" component={UnderConstruction} />
               <Route path="/learn">

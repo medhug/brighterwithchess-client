@@ -22,24 +22,7 @@ class Dashboard extends Component {
   }
 
   render() {
-    let tableValues1 = [
-      { id: "1", completed: false },
-      { id: "2", completed: false },
-      { id: "3", completed: false },
-      { id: "4", completed: false },
-    ];
-    let tableValues2 = [
-      { id: "1", completed: false },
-      { id: "2", completed: false },
-      { id: "3", completed: false },
-      { id: "4", completed: false },
-    ];
-    let tableValues3 = [
-      { id: "1", completed: false },
-      { id: "2", completed: false },
-      { id: "3", completed: false },
-      { id: "4", completed: false },
-    ];
+    let tableValuesAll= this.props.tableValuesAll;
 
     if (this.props.userStatus === true) {
       return (
@@ -49,15 +32,15 @@ class Dashboard extends Component {
             <div className="dashboard-container__progressbars">
               <ProgressBar
                 tableName={"Memory Progress"}
-                tableValues={tableValues1}
+                tableValues={tableValuesAll[0]}
               />
               <ProgressBar
                 tableName={"Calculate Progress"}
-                tableValues={tableValues2}
+                tableValues={tableValuesAll[1]}
               />
               <ProgressBar
                 tableName={"Pattern Progress"}
-                tableValues={tableValues3}
+                tableValues={tableValuesAll[2]}
               />
             </div>
             <div
