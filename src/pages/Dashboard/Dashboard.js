@@ -35,7 +35,7 @@ class Dashboard extends Component {
                 <ProgressBar tableName={"Calculate Progress"}/>
                 <ProgressBar tableName={"Pattern Progress"}/>
               </div>
-              <div onClick={() => {this.handleOnClick()}}><NavButton label={"Logout"}/></div>
+              <div className="dashboard-container__logoutbutton" onClick={() => {this.handleOnClick()}}><NavButton label={"Logout"}/></div>
               
             </div>
           </main>

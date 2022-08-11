@@ -2,8 +2,6 @@ import '../QuizMemory/QuizMemory.scss';
 import React, { Component } from 'react';
 import QuizBoard from '../../components/QuizBoard/QuizBoard';
 import NotLoggedIn from '../../components/NotLoggedIn/NotLoggedin';
-import { Link } from 'react-router-dom';
-
 
 const question1state= {"fen":"4k3/p6b/1p6/4P3/5P2/8/8/B3K3 w - - 0 1","dropSquareStyle":{},"squareStyles":{},"pieceSquare":"","square":"","history":[]};
 
