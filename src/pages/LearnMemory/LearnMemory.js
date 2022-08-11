@@ -4,6 +4,7 @@ import NotLoggedIn from "../../components/NotLoggedIn/NotLoggedin";
 import bishopdrawing from "../../assets/images/BishopDrawing.png";
 import bishopphoto from "../../assets/images/BishopPhoto.JPG";
 import bishopmoves from "../../assets/images/bishopsmoves.jpg";
+import bishopmoved from "../../assets/images/bishopmoved.jpg";
 
 class LearnMemory extends Component {
   render() {
@@ -27,6 +28,10 @@ class LearnMemory extends Component {
             <p className="learn-memory-container__text">You can choose any one of the squares with a black dot.</p>
             <p className="learn-memory-container__text">It can move as many or a few squares at you want.</p>
             <p className="learn-memory-container__text">The bishop cannot jump over other pieces.</p>
+            <div className="learn-memory-container__movement">
+              <img src={bishopmoved} alt="text3" className="learn-memory-container__movement--img" />
+            </div>
+            <p className="learn-memory-container__text">Did you see the bishop's new position?</p>
           </div>
         </main>
       );
