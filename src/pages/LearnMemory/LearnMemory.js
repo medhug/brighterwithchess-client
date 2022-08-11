@@ -26,8 +26,8 @@ class LearnMemory extends Component {
             </div>
             <p className="learn-memory-container__text">The bishop moves diagonally, like an X.</p>
             <p className="learn-memory-container__text">You can choose any one of the squares with a black dot.</p>
-            <p className="learn-memory-container__text">It can move as many or a few squares at you want.</p>
-            <p className="learn-memory-container__text">The bishop cannot jump over other pieces.</p>
+            <p className="learn-memory-container__text">It can move as many or a few squares as you want.</p>
+            <p className="learn-memory-container__text">Note: The bishop cannot jump over other pieces.</p>
             <div className="learn-memory-container__movement">
               <img src={bishopmoved} alt="text3" className="learn-memory-container__movement--img" />
             </div>

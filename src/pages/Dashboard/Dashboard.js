@@ -3,6 +3,7 @@ import {Component} from 'react';
 // import axios from 'axios';
 import ProgressBar from '../../components/ProgressBar/ProgressBar';
 import NotLoggedIn from '../../components/NotLoggedIn/NotLoggedin';
+import NavButton from '../../components/NavButton/NavButton';
 
 
 class Dashboard extends Component {
@@ -14,6 +15,12 @@ class Dashboard extends Component {
     console.log("dashboard mounted");
     console.log("systemwide login state", this.props.userStatus);
 
+  }
+
+  handleOnClick (){
+    console.log("clicked logout");
+    sessionStorage.removeItem('token');
+    window.location.reload();
   }
 
   render(){
@@ -28,6 +35,8 @@ class Dashboard extends Component {
                 <ProgressBar tableName={"Calculate Progress"}/>
                 <ProgressBar tableName={"Pattern Progress"}/>
               </div>
+              <div onClick={() => {this.handleOnClick()}}><NavButton label={"Logout"}/></div>
+              
             </div>
           </main>
       );  

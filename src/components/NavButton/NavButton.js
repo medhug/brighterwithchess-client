@@ -21,6 +21,7 @@ function NavButton(props) {
         Dash : HomeIcon,
         Learn : LearnIcon,
         Quiz : QuizIcon,
+        Logout : CancelIcon
     }
 
     iconName= table[label];

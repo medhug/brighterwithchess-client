@@ -63,7 +63,7 @@ class Login extends Component {
 
                   <form className="login" onSubmit={this.handleLogin}>
                   <Input type="text" name="email" label="Email" />
-                  <Input type="text" name="password" label="Password" />
+                  <Input type="password" name="password" label="Password" />
                   <button className="login__button">Log In</button>
 
                   {this.props.userStatus && <div className="login__message">Logged in</div>}
