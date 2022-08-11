@@ -1,7 +1,8 @@
 import "../LearnMemory/LearnMemory.scss";
 import { Component } from "react";
 import NotLoggedIn from "../../components/NotLoggedIn/NotLoggedin";
-import bishop from "../../assets/images/bishop.jpg";
+import bishopdrawing from "../../assets/images/BishopDrawing.png";
+import bishopphoto from "../../assets/images/BishopPhoto.JPG";
 
 class LearnMemory extends Component {
   render() {
@@ -9,12 +10,17 @@ class LearnMemory extends Component {
 
     if (this.props.userStatus === true) {
       return (
-        <main className="dashboard">
-          <div className="dashboard-container">
-            <h1>Lesson 1</h1>
-            <h3>Let's memorize how the bishop moves.</h3>
+        <main className="learn-memory">
+          <div className="learn-memory-container">
+            <h1 className="learn-memory-container__title">Lesson 1</h1>
+            <h3 className="learn-memory-container__text">Let's meet the bishop:</h3>
+            <div className="learn-memory-container__pictures">
+              <img src={bishopdrawing} alt="text1" className="learn-memory-container__pictures--img" />
+              <img src={bishopphoto} alt="text2" className="learn-memory-container__pictures--img"/>
+            </div>
+            <h3 className="learn-memory-container__text">Let's memorize how the bishop moves.</h3>
             <div>
-              <img src={bishop} alt="text" />
+              {/* <img src={} alt="text3" /> */}
             </div>
           </div>
         </main>
