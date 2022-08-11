@@ -7,23 +7,13 @@ function ProgressBar(props) {
 
     // import specific table from db
 
-    let tableValues = [
-        { "id" : "1",
-        "completed" : false},
-        { "id" : "2",
-        "completed" : false},
-        { "id" : "3",
-        "completed" : false},
-        { "id" : "4",
-        "completed" : false}
-    ];
+    let tableValues = props.tableValues;
 
-    let skillTableFromDatabase = {
-      memory : "user_memory_progress",
-      calculate : "user_calculation_progress",
-      pattern : "user_pattern_recognition_progress"
-    }
-
+    // let skillTableFromDatabase = {
+    //   memory : "user_memory_progress",
+    //   calculate : "user_calculation_progress",
+    //   pattern : "user_pattern_recognition_progress"
+    // }
 
     return (
       <main className="main">
