@@ -17,7 +17,6 @@ class HumanVsHuman extends Component {
   };
 
   componentDidMount() {
-    //console.log(this.props.initialboard);
     this.setState(
       this.props.initialboard
     )
@@ -28,10 +27,6 @@ class HumanVsHuman extends Component {
 
   componentDidUpdate( _prevProps , prevState){
     historyObjHasContent = historyObj.length > 0;
-    //console.log("history has content", historyObjHasContent);
-
-    let oldHistory = prevState.history;
-    console.log(oldHistory);
 
     if(this.state.history.length === 0){
       return
@@ -47,12 +42,10 @@ class HumanVsHuman extends Component {
   }
 
   handleBoardAnswer = () => {
-    //console.log("board answer tested");
 
     if(pickupStateFen === question1answer.fen){
       this.props.handleUserAnswer(true);
     } else {
-      console.log("boards don't match");
       this.props.handleUserAnswer(false);
     }
   }
@@ -190,7 +183,7 @@ class QuizBoard extends Component {
   }
 
   componentDidMount(){
-    console.log("quizboard mounted");
+    //console.log("quizboard mounted");
   }
 
   render(){

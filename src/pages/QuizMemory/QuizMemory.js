@@ -14,7 +14,6 @@ class QuizMemory extends Component {
   }
 
   handleUserAnswer = (response) => {
-    console.log("found true?", response);
 
     if(response === true){
       this.props.handleProgressBars(true,0,0);
@@ -23,7 +22,6 @@ class QuizMemory extends Component {
         messageYes : true
       })
     } else {
-      console.log("setting message no to true");
       this.setState({
         messageNo : true
       })
@@ -31,11 +29,6 @@ class QuizMemory extends Component {
 
   }
 
-
-  // componentDidUpdate(prevProp, prevState){
-  //   if()
-
-  // }
   render(){
 
   if(this.props.userStatus === true){
