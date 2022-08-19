@@ -39,7 +39,6 @@ class Login extends Component {
           password: e.target.password.value,
         })
         .then((response) => {
-          console.log(response);
           this.props.handleSystemWideLogIn();
 
           sessionStorage.setItem('token', response.data.token);

@@ -41,7 +41,6 @@ class App extends React.Component {
 
   componentDidMount() {
     console.log("app mounted");
-    console.log("system log in: ", this.state.systemWideLogIn);
     this.setState({
       pageDidMount: true,
     });

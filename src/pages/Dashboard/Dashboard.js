@@ -12,7 +12,6 @@ class Dashboard extends Component {
 
   componentDidMount() {
     console.log("dashboard mounted");
-    console.log("systemwide login state", this.props.userStatus);
   }
 
   handleOnClick() {

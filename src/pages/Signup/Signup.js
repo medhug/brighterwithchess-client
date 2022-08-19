@@ -65,17 +65,17 @@ class Signup extends Component {
     render() {
         return (
             <main className="signup-page">
-                <h1>Sign Up</h1>
-                <form className="signup" onSubmit={this.handleSignup}>
+                <h1 className="signup-page__title">Sign Up</h1>
+                <form className="signup-page__form" onSubmit={this.handleSignup}>
                     <Input type="text" name="email" label="Email" />
                     <Input type="text" name="name" label="First name" />
                     <Input type="password" name="password" label="Password" />
                     <Input type="password" name="password2" label="Retype Password" />
-                    <button className="signup__button">Sign up</button>
+                    <button className="signup-page__form--button">Sign up</button>
 
-                    {this.state.success && <div className="signup__message">Signed up!</div>}
-                    {this.state.errorMessage && <div className="signup__message">{this.state.errorMessage}</div>}
-                    {this.state.error && <div className="signup__message">{this.state.error}</div>}
+                    {this.state.success && <div className="signup-page__form--message">Signed up!</div>}
+                    {this.state.errorMessage && <div className="signup-page__form--message">{this.state.errorMessage}</div>}
+                    {this.state.error && <div className="signup-page__form--message">{this.state.error}</div>}
                 </form>
             </main>
         );
