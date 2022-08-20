@@ -5,21 +5,18 @@
 .dashboard {
     background-color: $emerald;
     width: 100%;
-    min-height: 604px;
+    height: 100vh;
     margin-bottom: $header-height;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
 
     &-container{
         width: 80%;
-        height: 560px;
+        height: calc(100% - $header-height + 1rem);
         margin-top: 3rem;
-        margin-bottom: 3rem;
         background-color: white;
         border-radius: 25px;
-        border: 2px solid black;
         display: flex;
         flex-direction: column;
         justify-content: center;
