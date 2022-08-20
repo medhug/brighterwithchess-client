@@ -58,17 +58,17 @@ class Login extends Component {
       return (
           <>
               <main className="login-page">
-                  <h1>Login</h1>
+                  <h1 className="login-page__title">Login</h1>
 
-                  <form className="login" onSubmit={this.handleLogin}>
+                  <form className="login-page__form" onSubmit={this.handleLogin}>
                   <Input type="text" name="email" label="Email" />
                   <Input type="password" name="password" label="Password" />
-                  <button className="login__button">Log In</button>
+                  <button className="login-page__form--button">Log In</button>
 
-                  {this.props.userStatus && <div className="login__message">Logged in</div>}
+                  {this.props.userStatus && <div className="login-page__form--message">Logged in</div>}
                   {this.props.userStatus && <Link to="/dashboard/user">
-                      <div className="login__message">Go to dashboard</div></Link>}
-                  {this.state.isLoginError && <div className="login__message">{this.state.errorMessage}</div>}
+                      <div className="login-page__form--message">Go to dashboard</div></Link>}
+                  {this.state.isLoginError && <div className="login-page__form--message">{this.state.errorMessage}</div>}
                   </form>
               </main>
 
