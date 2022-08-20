@@ -4,18 +4,16 @@
 .quizmemory {
     background-color: $emerald;
     width: 100%;
+    height: calc(100vh - $header-height);
     margin-bottom: $header-height;
     display: flex;
     flex-direction: column;
-    justify-content: center; 
     align-items: center;
 
     &-container{
-        width: 100%;
-        margin-bottom: $header-height;
+        width: 80%;
         background-color: white;
         margin-top: 3rem;
-        margin-bottom: 3rem;
         border-radius: 25px;
         // border: 2px solid black;
 
@@ -39,10 +37,9 @@
             align-items: center;
 
             &--prompt{
-                width: 80%;
+                width: 400px;
                 align-self: center;
-                margin-top: 1.5rem;
-                margin-bottom: 1rem;
+                margin-top: 2rem;
                 padding-left: 15px;
                 padding-right: 15px;
                 font-size: 1.5rem;

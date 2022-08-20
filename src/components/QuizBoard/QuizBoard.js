@@ -203,7 +203,7 @@ class QuizBoard extends Component {
           }) => (
             <Chessboard
               id="humanVsHuman"
-              width={325}
+              width={400}
               position={position}
               lightSquareStyle={ {backgroundColor: 'tan'} }
               darkSquareStyle={ {backgroundColor: 'copperred'} }

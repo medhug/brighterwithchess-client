@@ -3,36 +3,29 @@
 
 
 .learn {
-    margin-bottom: $header-height;
     background-color: $emerald;
     width: 100%;
-    min-height: 604px;
+    height: 100vh;
+    margin-bottom: $header-height;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
 
     &-container{
         width: 80%;
-        height: $min-height;
+        height: calc(100% - $header-height);
         margin-top: 3rem;
-        margin-bottom: 3rem;
         background-color: white;
         border-radius: 25px;
         display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
 
         &__title {
             margin-top: 1rem;
             margin-bottom: 1rem;
             width: 80%;
-
+            text-align: center;
         }
     }
 }
-
-// .router-link{
-//     all: unset;
-// }
