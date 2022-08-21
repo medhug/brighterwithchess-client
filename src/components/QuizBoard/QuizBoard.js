@@ -57,7 +57,6 @@ class HumanVsHuman extends Component {
     let questionID = this.props.questionID;
     let ansFen = answerArr[questionID].fen;
 
-    console.log(pickupStateFen, ansFen);
     if(pickupStateFen === ansFen){
       this.props.handleUserAnswer(true, questionID, skillIndex);
     } else {

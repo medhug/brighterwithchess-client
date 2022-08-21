@@ -15,20 +15,17 @@ class QuizMemory extends Component {
   }
 
   handleUserAnswer = (response, questionID, skillIndex) => {
-    console.log("question: ", questionID, "response", response);
     if(response === true){
       this.props.handleProgressBars(true, questionID, skillIndex);
 
       let messageStatus = [null, null, null, null];
       messageStatus[questionID] = true;
-      console.log(messageStatus)
       this.setState({
         messageYes : messageStatus
       })
     } else {
       let messageStatus = [null, null, null, null];
       messageStatus[questionID] = true;
-      console.log(messageStatus)
       this.setState({
         messageNo : messageStatus
       })
