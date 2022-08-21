@@ -61,8 +61,11 @@ class App extends React.Component {
     });
   };
 
-  handleProgressBars = (status, skill, question) => {
-    tableValuesAll[skill][0].completed = true;
+  handleProgressBars = (status, questionID, skillIndex) => {
+    console.log("the whole set: ", status, questionID, skillIndex);
+
+    console.log(tableValuesAll)
+    tableValuesAll[skillIndex][questionID].completed = true;
   };
 
   render() {

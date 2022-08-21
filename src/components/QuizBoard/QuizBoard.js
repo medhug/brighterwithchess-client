@@ -43,14 +43,24 @@ class HumanVsHuman extends Component {
   }
 
   handleBoardAnswer = () => {
-    
-    let index = this.props.questionID;
-    let ansFen = answerArr[index].fen;
+    let skillIndex;
+    let skill = this.props.skill;
+
+    if(skill === "memory"){
+      skillIndex = 0;
+    } else if (skill === "calculate"){
+      skillIndex = 1;
+    } else if(skill === "pattern"){
+      skillIndex = 2;
+    }
+
+    let questionID = this.props.questionID;
+    let ansFen = answerArr[questionID].fen;
 
     if(pickupStateFen === ansFen){
-      this.props.handleUserAnswer(true);
+      this.props.handleUserAnswer(true, questionID, skillIndex);
     } else {
-      this.props.handleUserAnswer(false);
+      this.props.handleUserAnswer(false, questionID, skillIndex);
     }
   }
 
@@ -164,7 +174,6 @@ class HumanVsHuman extends Component {
 
   render() {
     historyObj = this.state.history;
-    //console.log("history object", historyObj);
 
     const { fen, dropSquareStyle, squareStyles } = this.state;
 
@@ -193,7 +202,7 @@ class QuizBoard extends Component {
   render(){
     return (
       <div>
-        <HumanVsHuman initialboard={this.props.initialboard} handleUserAnswer={this.props.handleUserAnswer} questionID={this.props.questionID}>
+        <HumanVsHuman initialboard={this.props.initialboard} handleUserAnswer={this.props.handleUserAnswer} questionID={this.props.questionID} skill={this.props.skill}>
           {({
             position,
             onDrop,

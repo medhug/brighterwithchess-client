@@ -9,22 +9,28 @@ const question2state= {"fen":"5rk1/R3bppp/2ppn3/1p2p3/4P3/2N2N2/1PnPBPPP/6K1 w -
 
 class QuizMemory extends Component {
   state = {
-    message1Yes : false,
-    message1No : false,
+    messageYes : [null,null,null,null],
+    messageNo : [null,null,null,null],
     attempt: 0
   }
 
-  handleUserAnswer = (response) => {
-
+  handleUserAnswer = (response, questionID, skillIndex) => {
+    console.log(response);
     if(response === true){
-      this.props.handleProgressBars(true,0,0);
+      this.props.handleProgressBars(true, questionID, skillIndex);
 
+      let messageStatus = [false, false, false, false];
+      messageStatus[questionID] = true;
+      console.log(messageStatus)
       this.setState({
-        message1Yes : true
+        messageYes : messageStatus
       })
     } else {
+      let messageStatus = [false, false, false, false];
+      messageStatus[questionID] = false;
+      console.log(messageStatus)
       this.setState({
-        message1No : true
+        messageNo : messageStatus
       })
     }
 
@@ -39,18 +45,18 @@ class QuizMemory extends Component {
             <h1 className="quizmemory-container__title">Test your Memory skills</h1>
 
             <div className="quizmemory-container__questionbox">
-              <QuizBoard initialboard = {question1state} handleUserAnswer={this.handleUserAnswer} questionID={0}/>
-              {this.state.message1Yes? <div className="messageYes">You did it!</div> : <></>}
-              {this.state.message1No? <div className="messageNo">That's not correct...</div> : <></> }
-              {this.state.message1No?<button className="reloadbutton" onClick={() => {window.location.reload();}}>Try Again</button> : <></> }
+              <QuizBoard initialboard = {question1state} handleUserAnswer={this.handleUserAnswer} questionID={0} skill={'memory'}/>
+              {this.state.messageYes[0]? <div className="messageYes">You did it!</div> : <></>}
+              {this.state.messageNo[0]? <div className="messageNo">That's not correct...</div> : <></> }
+              {this.state.messageNo[0]?<button className="reloadbutton" onClick={() => {window.location.reload();}}>Try Again</button> : <></> }
               <h3 className="quizmemory-container__questionbox--prompt">Question 1: What is the farthest square that the white bishop can move?</h3>
             </div>
 
             <div className="quizmemory-container__questionbox">
-              <QuizBoard initialboard = {question2state} handleUserAnswer={this.handleUserAnswer} questionID={1}/>
-              {this.state.messageYes? <div className="messageYes">You did it!</div> : <></>}
-              {this.state.messageNo? <div className="messageNo">That's not correct...</div> : <></> }
-              {this.state.messageNo?<button className="reloadbutton" onClick={() => {window.location.reload();}}>Try Again</button> : <></> }
+              <QuizBoard initialboard = {question2state} handleUserAnswer={this.handleUserAnswer} questionID={1} skill={'memory'}/>
+              {this.state.messageYes[1]? <div className="messageYes">You did it!</div> : <></>}
+              {this.state.messageNo[1]? <div className="messageNo">That's not correct...</div> : <></> }
+              {this.state.messageNo[1]?<button className="reloadbutton" onClick={() => {window.location.reload();}}>Try Again</button> : <></> }
               <h3 className="quizmemory-container__questionbox--prompt">Question 2: Capture a piece using the white bishop?</h3>
             </div>
 
