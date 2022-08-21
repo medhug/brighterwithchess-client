@@ -9,7 +9,7 @@ let historyObjHasContent;
 let pickupStateFen;
 
 const question1answer={"fen":"4k3/p6b/1p6/4P3/3B1P2/8/8/4K3 b - - 1 1"}
-const question2answer={"fen":"5rk1/R3bppp/2ppn3/1B2p3/4P3/2N2N2/1PnP1PPP/6K1 b - - 1 1"}
+const question2answer={"fen":"5rk1/R3bppp/2ppn3/1B2p3/4P3/2N2N2/1PnP1PPP/6K1 b - - 0 1"}
 const answerArr = [question1answer,question2answer];
 
 class HumanVsHuman extends Component {
@@ -57,6 +57,7 @@ class HumanVsHuman extends Component {
     let questionID = this.props.questionID;
     let ansFen = answerArr[questionID].fen;
 
+    console.log(pickupStateFen, ansFen);
     if(pickupStateFen === ansFen){
       this.props.handleUserAnswer(true, questionID, skillIndex);
     } else {
