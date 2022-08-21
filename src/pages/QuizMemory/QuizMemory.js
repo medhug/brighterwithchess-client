@@ -27,7 +27,7 @@ class QuizMemory extends Component {
       })
     } else {
       let messageStatus = [null, null, null, null];
-      messageStatus[questionID] = false;
+      messageStatus[questionID] = true;
       console.log(messageStatus)
       this.setState({
         messageNo : messageStatus
@@ -57,7 +57,7 @@ class QuizMemory extends Component {
               {this.state.messageYes[1]? <div className="messageYes">You did it!</div> : <></>}
               {this.state.messageNo[1]? <div className="messageNo">That's not correct...</div> : <></> }
               {this.state.messageNo[1]?<button className="reloadbutton" onClick={() => {window.location.reload();}}>Try Again</button> : <></> }
-              <h3 className="quizmemory-container__questionbox--prompt">Question 2: Capture a piece using the white bishop.</h3>
+              <h3 className="quizmemory-container__questionbox--prompt">Question 2: Capture a piece using the white bishop</h3>
             </div>
 
           </div>
