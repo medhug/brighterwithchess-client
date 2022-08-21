@@ -9,6 +9,8 @@ let historyObjHasContent;
 let pickupStateFen;
 
 const question1answer={"fen":"4k3/p6b/1p6/4P3/3B1P2/8/8/4K3 b - - 1 1"}
+const question2answer={"fen":"5rk1/R3bppp/2ppn3/1B2p3/4P3/2N2N2/1PnP1PPP/6K1 b - - 1 1"}
+const answerArr = [question1answer,question2answer];
 
 class HumanVsHuman extends Component {
   static propTypes = { children: PropTypes.func };
@@ -21,7 +23,6 @@ class HumanVsHuman extends Component {
       this.props.initialboard
     )
     this.game = new Chess(this.props.initialboard.fen);
-
     historyObjHasContent = historyObj ? false : undefined;
   }
 
@@ -42,8 +43,11 @@ class HumanVsHuman extends Component {
   }
 
   handleBoardAnswer = () => {
+    
+    let index = this.props.questionID;
+    let ansFen = answerArr[index].fen;
 
-    if(pickupStateFen === question1answer.fen){
+    if(pickupStateFen === ansFen){
       this.props.handleUserAnswer(true);
     } else {
       this.props.handleUserAnswer(false);
@@ -66,7 +70,7 @@ class HumanVsHuman extends Component {
           ...{
             [c]: {
               background:
-                "radial-gradient(circle, #fffc00 36%, transparent 40%)",
+                "radial-gradient(circle, #FFFFFF 1%, transparent 1%)",
               borderRadius: "50%"
             }
           },
@@ -189,7 +193,7 @@ class QuizBoard extends Component {
   render(){
     return (
       <div>
-        <HumanVsHuman initialboard={this.props.initialboard} handleUserAnswer={this.props.handleUserAnswer}>
+        <HumanVsHuman initialboard={this.props.initialboard} handleUserAnswer={this.props.handleUserAnswer} questionID={this.props.questionID}>
           {({
             position,
             onDrop,
@@ -205,8 +209,8 @@ class QuizBoard extends Component {
               id="humanVsHuman"
               width={400}
               position={position}
-              lightSquareStyle={ {backgroundColor: 'tan'} }
-              darkSquareStyle={ {backgroundColor: 'copperred'} }
+              lightSquareStyle={ {backgroundColor: 'white'} }
+              darkSquareStyle={ {backgroundColor: 'tan'} }
               onDrop={onDrop}
               onMouseOverSquare={onMouseOverSquare}
               onMouseOutSquare={onMouseOutSquare}
