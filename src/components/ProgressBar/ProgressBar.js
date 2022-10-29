@@ -9,11 +9,6 @@ function ProgressBar(props) {
 
     let tableValues = props.tableValues;
 
-    // let skillTableFromDatabase = {
-    //   memory : "user_memory_progress",
-    //   calculate : "user_calculation_progress",
-    //   pattern : "user_pattern_recognition_progress"
-    // }
 
     return (
       <main className="main">

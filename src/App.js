@@ -11,30 +11,10 @@ import Quiz from "./pages/Quiz/Quiz";
 import QuizMemory from "./pages/QuizMemory/QuizMemory";
 import UnderConstruction from "./pages/UnderConstruction/UnderConstruction";
 
-let tableValuesAll = [
-  [
-    { id: "1", completed: false },
-    { id: "2", completed: false },
-    { id: "3", completed: false },
-    { id: "4", completed: false },
-  ],
-  [
-    { id: "1", completed: false },
-    { id: "2", completed: false },
-    { id: "3", completed: false },
-    { id: "4", completed: false },
-  ],
-  [
-    { id: "1", completed: false },
-    { id: "2", completed: false },
-    { id: "3", completed: false },
-    { id: "4", completed: false },
-  ],
-];
-
 class App extends React.Component {
   state = {
     user: null,
+    userID: null,
     pageDidMount: false,
     systemWideLogIn: false,
   };
@@ -53,16 +33,12 @@ class App extends React.Component {
     }
   }
 
-  handleSystemWideLogIn = () => {
-    console.log("system wide login triggered");
-
+  handleSystemWideLogIn = (bundle) => {
     this.setState({
       systemWideLogIn: true,
+      user: bundle.name,
+      userID: bundle.id,
     });
-  };
-
-  handleProgressBars = (status, questionID, skillIndex) => {
-    tableValuesAll[skillIndex][questionID].completed = true;
   };
 
   render() {
@@ -82,17 +58,15 @@ class App extends React.Component {
               <Route path="/dashboard/:id">
                 <Dashboard
                   userStatus={this.state.systemWideLogIn}
-                  tableValuesAll={tableValuesAll}
+                  user={this.state.user}
+                  userID={this.state.userID}
                 />
               </Route>
               <Route exact path="/learn/memory">
                 <LearnMemory userStatus={this.state.systemWideLogIn} />
               </Route>
               <Route path="/quiz/memory">
-                <QuizMemory
-                  userStatus={this.state.systemWideLogIn}
-                  handleProgressBars={this.handleProgressBars}
-                />
+                <QuizMemory userStatus={this.state.systemWideLogIn} />
               </Route>
               <Route exact path="/construction" component={UnderConstruction} />
               <Route path="/learn">
