@@ -16,17 +16,27 @@ class Dashboard extends Component {
   componentDidMount() {
     console.log("dashboard mounted");
 
+    if (this.props.userStatus === false) {
+      window.location.assign("http://localhost:3000/");
+    }
+
+    let URI = baseUrl + "progressbars/" + this.props.userID;
+
     if (this.props.userStatus === true) {
       axios
-        .get(baseUrl + "progressbars")
+        .get(URI, {
+          params: { _id: this.props.userID },
+        })
         .then((response) => {
-          console.log("getbars failed. empty database", response.data);
-          if (response.data.length === 0) {
+          if (response.data === null) {
             this.loadProgressBarsHandler();
+          }
+          if (response.data != null) {
+            console.log("data in DB");
           }
         })
         .catch((err) => {
-          console.log(err);
+          console.log("loaded bars into empty database", err);
         });
     }
   }
@@ -40,27 +50,12 @@ class Dashboard extends Component {
     axios
       .post(baseUrl + "progressbars", {
         userID: this.props.userID,
-        memory: [
-          { q1: "1", completed: false },
-          { q2: "2", completed: false },
-          { d3: "3", completed: false },
-          { d4: "4", completed: false },
-        ],
-        calculation: [
-          { q1: "1", completed: false },
-          { q2: "2", completed: false },
-          { d3: "3", completed: false },
-          { d4: "4", completed: false },
-        ],
-        patterns: [
-          { q1: "1", completed: false },
-          { q2: "2", completed: false },
-          { d3: "3", completed: false },
-          { d4: "4", completed: false },
-        ],
+        user: this.props.user,
+        memory: { q1: false, q2: false, d3: false, d4: false },
+        calculation: { q1: false, q2: false, d3: false, d4: false },
+        patterns: { q1: false, q2: false, d3: false, d4: false },
       })
       .then((response) => {
-        console.log("loaded bars into database");
         this.setState({
           barsLoaded: true,
         });

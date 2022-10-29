@@ -39,6 +39,8 @@ class App extends React.Component {
       user: bundle.name,
       userID: bundle.id,
     });
+
+    // window.location.assign("http://localhost:3000/dashboard/user");
   };
 
   render() {
