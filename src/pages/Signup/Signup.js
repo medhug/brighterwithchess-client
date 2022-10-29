@@ -51,7 +51,6 @@ class Signup extends Component {
         email: e.target.email.value,
       })
       .then((response) => {
-        console.log(response);
         this.setState({
           isSignedUp: true,
           success: true,
