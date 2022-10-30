@@ -11,6 +11,9 @@ class Dashboard extends Component {
   state = {
     error: "",
     barsLoaded: false,
+    Memory: [],
+    Calculation: [],
+    Patterns: [],
   };
 
   componentDidMount() {
@@ -22,17 +25,17 @@ class Dashboard extends Component {
 
     let URI = baseUrl + "progressbars/" + this.props.userID;
 
-    if (this.props.userStatus === true) {
+    if (this.props.userStatus === true && this.props.userID != null) {
       axios
         .get(URI, {
           params: { _id: this.props.userID },
         })
         .then((response) => {
           if (response.data === null) {
-            this.loadProgressBarsHandler();
+            this.defaultProgressBarsHandler();
           }
           if (response.data != null) {
-            console.log("data in DB");
+            this.usersProgressHandler(response.data);
           }
         })
         .catch((err) => {
@@ -41,7 +44,7 @@ class Dashboard extends Component {
     }
   }
 
-  loadProgressBarsHandler() {
+  defaultProgressBarsHandler() {
     console.log(
       "load bars into database for",
       this.props.user,
@@ -51,11 +54,11 @@ class Dashboard extends Component {
       .post(baseUrl + "progressbars", {
         userID: this.props.userID,
         user: this.props.user,
-        memory: { q1: false, q2: false, d3: false, d4: false },
-        calculation: { q1: false, q2: false, d3: false, d4: false },
-        patterns: { q1: false, q2: false, d3: false, d4: false },
+        Memory: [{ 1: false }, { 2: false }, { 3: false }, { 4: false }],
+        Calculation: [{ 1: false }, { 2: false }, { 3: false }, { 4: false }],
+        Patterns: [{ 1: false }, { 2: false }, { 3: false }, { 4: false }],
       })
-      .then((response) => {
+      .then(() => {
         this.setState({
           barsLoaded: true,
         });
@@ -63,6 +66,16 @@ class Dashboard extends Component {
       .catch((err) => {
         console.log(err);
       });
+  }
+
+  usersProgressHandler(response) {
+    console.log("actively get bars from db");
+
+    this.setState({
+      Memory: response.Memory,
+      Calculation: response.Calculation,
+      Patterns: response.Patterns,
+    });
   }
 
   handleOnClick() {
@@ -79,31 +92,19 @@ class Dashboard extends Component {
             <h1>Welcome {this.props.user}!</h1>
             <div className="dashboard-container__progressbars">
               <ProgressBar
-                tableName={"Memory Progress"}
-                tableValues={[
-                  { q1: "1", completed: false },
-                  { q2: "2", completed: false },
-                  { d3: "3", completed: false },
-                  { d4: "4", completed: false },
-                ]}
+                key={1}
+                label={"Memory"}
+                blockValues={this.state.Memory}
               />
               <ProgressBar
-                tableName={"Calculate Progress"}
-                tableValues={[
-                  { id: "1", completed: false },
-                  { id: "2", completed: false },
-                  { id: "3", completed: false },
-                  { id: "4", completed: false },
-                ]}
+                key={2}
+                label={"Calculation"}
+                blockValues={this.state.Calculation}
               />
               <ProgressBar
-                tableName={"Pattern Progress"}
-                tableValues={[
-                  { id: "1", completed: false },
-                  { id: "2", completed: false },
-                  { id: "3", completed: false },
-                  { id: "4", completed: false },
-                ]}
+                key={3}
+                label={"Patterns"}
+                blockValues={this.state.Patterns}
               />
             </div>
             <div
