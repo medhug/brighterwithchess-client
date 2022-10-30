@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 import axios from 'axios';
 import Input from "../../components/Input/Input";
 
-const baseUrl = 'http://localhost:5050/users/login';
+const baseUrl = 'http://localhost:5050/';
 
 class Login extends Component {
     state = {
@@ -13,7 +13,6 @@ class Login extends Component {
     };
 
     componentDidMount(){
-      console.log("login mounted");
       console.log("systemwide login state", this.props.userStatus);
     }
     
@@ -34,12 +33,12 @@ class Login extends Component {
       }
 
       axios
-        .post(baseUrl, {
+        .post(baseUrl+"login", {
           email: e.target.email.value,
           password: e.target.password.value,
         })
         .then((response) => {
-          this.props.handleSystemWideLogIn();
+          this.props.handleSystemWideLogIn(response.data.bundle);
 
           sessionStorage.setItem('token', response.data.token);
           this.setState({

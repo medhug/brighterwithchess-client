@@ -1,33 +1,32 @@
+import React, { useState, useEffect } from "react";
 import "../ProgressBar/ProgressBar.scss";
 import ProgressBlock from "../ProgressBlock/ProgressBlock";
 
 function ProgressBar(props) {
-    
-    let tableName = props.tableName; 
+  const [blockValues, setBlockValues] = useState([
+    [{ 1: false }, { 2: false }, { 3: false }, { 4: false }],
+  ]);
+  const [label, setLabel] = useState("Generic");
 
-    // import specific table from db
+  useEffect(() => {
+    setLabel(props.label);
+    setBlockValues(props.blockValues);
+  }, [props.blockValues, props.label]);
 
-    let tableValues = props.tableValues;
+  return (
+    <main className="main">
+      <h3>{label}</h3>
+      <div className="main__bar">
+        {blockValues.map((block, index) => (
+          <ProgressBlock
+            key={index+100}
+            questionNum={index +1}
+            completed={block}
+          />
+        ))}
+      </div>
+    </main>
+  );
+}
 
-    // let skillTableFromDatabase = {
-    //   memory : "user_memory_progress",
-    //   calculate : "user_calculation_progress",
-    //   pattern : "user_pattern_recognition_progress"
-    // }
-
-    return (
-      <main className="main">
-        <h3>{tableName}</h3>
-        <div className="main__bar">
-            {tableValues.map((block, index) => <ProgressBlock
-                key={block.id}
-                questionNum = {index + 1}
-                completed={block.completed}
-                />
-            )}
-        </div>
-      </main>
-    );
-  }
-  
-  export default ProgressBar;
+export default ProgressBar;
