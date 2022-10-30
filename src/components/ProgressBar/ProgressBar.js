@@ -19,7 +19,7 @@ function ProgressBar(props) {
       <div className="main__bar">
         {blockValues.map((block, index) => (
           <ProgressBlock
-            key={block.id}
+            key={index+100}
             questionNum={index +1}
             completed={block}
           />

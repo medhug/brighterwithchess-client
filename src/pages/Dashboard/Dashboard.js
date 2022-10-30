@@ -11,14 +11,12 @@ class Dashboard extends Component {
   state = {
     error: "",
     barsLoaded: false,
-    Memory: [],
-    Calculation: [],
-    Patterns: [],
+    Memory: [{ 1: false }, { 2: false }, { 3: false }, { 4: false }],
+    Calculation: [{ 1: false }, { 2: false }, { 3: false }, { 4: false }],
+    Patterns: [{ 1: false }, { 2: false }, { 3: false }, { 4: false }],
   };
 
   componentDidMount() {
-    console.log("dashboard mounted");
-
     if (this.props.userStatus === false) {
       window.location.assign("http://localhost:3000/");
     }
@@ -45,18 +43,13 @@ class Dashboard extends Component {
   }
 
   defaultProgressBarsHandler() {
-    console.log(
-      "load bars into database for",
-      this.props.user,
-      this.props.userID
-    );
     axios
       .post(baseUrl + "progressbars", {
         userID: this.props.userID,
         user: this.props.user,
-        Memory: [{ 1: false }, { 2: false }, { 3: false }, { 4: false }],
-        Calculation: [{ 1: false }, { 2: false }, { 3: false }, { 4: false }],
-        Patterns: [{ 1: false }, { 2: false }, { 3: false }, { 4: false }],
+        Memory: this.state.Memory,
+        Calculation: this.state.Calculation,
+        Patterns: this.state.Patterns,
       })
       .then(() => {
         this.setState({
@@ -69,8 +62,6 @@ class Dashboard extends Component {
   }
 
   usersProgressHandler(response) {
-    console.log("actively get bars from db");
-
     this.setState({
       Memory: response.Memory,
       Calculation: response.Calculation,
