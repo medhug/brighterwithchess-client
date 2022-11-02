@@ -13,12 +13,13 @@ let pickupStateFen;
 class HumanVsHuman extends Component {
   static propTypes = { children: PropTypes.func };
 
-  state = {};
+  state = {
+    boardFromDb: {fen:"initial"}
+  };
 
   componentDidMount() {
-    console.log("what board is loaded", this.props.initialboard);
     this.callDbForFen(this.props.initialboard);
-    this.setState(this.state.boardFromDb);
+    console.log("the state is:", this.state)
     this.game = new Chess(this.state.boardFromDb.fen);
     historyObjHasContent = historyObj ? false : undefined;
   }
@@ -60,13 +61,17 @@ class HumanVsHuman extends Component {
     }
   };
 
-  callDbForFen(boardRequest) {
+  callDbForFen(question) {
     axios
       .get(baseUrl + "boards", {
-        params: { M1Qn: boardRequest },
+        params: {question},
       })
       .then((response) => {
-        console.log(response);
+        this.setState({
+          question: response.data.qn.fen,
+          answer: response.data.ans.fen,
+          skillAndNum: response.data.question
+        })
       })
       .catch((err) => {
         console.log("couldnt find board", err);
