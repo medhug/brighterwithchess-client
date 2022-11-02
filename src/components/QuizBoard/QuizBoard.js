@@ -1,73 +1,82 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { Chess } from "chess.js"; 
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { Chess } from "chess.js";
 import Chessboard from "chessboardjsx";
+import axios from "axios";
 
+const baseUrl = "http://localhost:5050/";
 
 let historyObj;
 let historyObjHasContent;
 let pickupStateFen;
 
-const question1answer={"fen":"4k3/p6b/1p6/4P3/3B1P2/8/8/4K3 b - - 1 1"}
-const question2answer={"fen":"5rk1/R3bppp/2ppn3/1B2p3/4P3/2N2N2/1PnP1PPP/6K1 b - - 0 1"}
-const answerArr = [question1answer,question2answer];
-
 class HumanVsHuman extends Component {
   static propTypes = { children: PropTypes.func };
 
-  state = {
-  };
+  state = {};
 
   componentDidMount() {
-    this.setState(
-      this.props.initialboard
-    )
-    this.game = new Chess(this.props.initialboard.fen);
+    console.log("what board is loaded", this.props.initialboard);
+    this.callDbForFen(this.props.initialboard);
+    this.setState(this.state.boardFromDb);
+    this.game = new Chess(this.state.boardFromDb.fen);
     historyObjHasContent = historyObj ? false : undefined;
   }
 
-  componentDidUpdate( _prevProps , prevState){
+  componentDidUpdate(_prevProps, prevState) {
     historyObjHasContent = historyObj.length > 0;
 
-    if(this.state.history.length === 0){
-      return
+    if (this.state.history.length === 0) {
+      return;
     }
 
-    if(prevState.history !== this.state.history ){
+    if (prevState.history !== this.state.history) {
       pickupStateFen = this.state.fen;
       this.handleBoardAnswer();
     } else {
-        return ;
+      return;
     }
-    
   }
 
   handleBoardAnswer = () => {
     let skillIndex;
     let skill = this.props.skill;
 
-    if(skill === "memory"){
+    if (skill === "memory") {
       skillIndex = 0;
-    } else if (skill === "calculate"){
+    } else if (skill === "calculate") {
       skillIndex = 1;
-    } else if(skill === "pattern"){
+    } else if (skill === "pattern") {
       skillIndex = 2;
     }
 
     let questionID = this.props.questionID;
-    let ansFen = answerArr[questionID].fen;
+    let ansFen = this.state.answer.fen;
 
-    if(pickupStateFen === ansFen){
+    if (pickupStateFen === ansFen) {
       this.props.handleUserAnswer(true, questionID, skillIndex);
     } else {
       this.props.handleUserAnswer(false, questionID, skillIndex);
     }
+  };
+
+  callDbForFen(boardRequest) {
+    axios
+      .get(baseUrl + "boards", {
+        params: { M1Qn: boardRequest },
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log("couldnt find board", err);
+      });
   }
 
   // keep clicked square style and remove hint squares
   removeHighlightSquare = () => {
     this.setState(({ pieceSquare, history }) => ({
-      squareStyles: squareStyling({ pieceSquare, history })
+      squareStyles: squareStyling({ pieceSquare, history }),
     }));
   };
 
@@ -79,22 +88,21 @@ class HumanVsHuman extends Component {
           ...a,
           ...{
             [c]: {
-              background:
-                "radial-gradient(circle, #FFFFFF 1%, transparent 1%)",
-              borderRadius: "50%"
-            }
+              background: "radial-gradient(circle, #FFFFFF 1%, transparent 1%)",
+              borderRadius: "50%",
+            },
           },
           ...squareStyling({
             history: this.state.history,
-            pieceSquare: this.state.pieceSquare
-          })
+            pieceSquare: this.state.pieceSquare,
+          }),
         };
       },
       {}
     );
 
     this.setState(({ squareStyles }) => ({
-      squareStyles: { ...squareStyles, ...highlightStyles }
+      squareStyles: { ...squareStyles, ...highlightStyles },
     }));
   };
 
@@ -103,7 +111,7 @@ class HumanVsHuman extends Component {
     let move = this.game.move({
       from: sourceSquare,
       to: targetSquare,
-      promotion: "q" // always promote to a queen for example simplicity
+      promotion: "q", // always promote to a queen for example simplicity
     });
 
     // illegal move
@@ -111,15 +119,15 @@ class HumanVsHuman extends Component {
     this.setState(({ history, pieceSquare }) => ({
       fen: this.game.fen(),
       history: this.game.history({ verbose: true }),
-      squareStyles: squareStyling({ pieceSquare, history })
+      squareStyles: squareStyling({ pieceSquare, history }),
     }));
   };
 
-  onMouseOverSquare = square => {
+  onMouseOverSquare = (square) => {
     // get list of possible moves for this square
     let moves = this.game.moves({
       square: square,
-      verbose: true
+      verbose: true,
     });
 
     // exit if there are no moves available for this square
@@ -133,28 +141,28 @@ class HumanVsHuman extends Component {
     this.highlightSquare(square, squaresToHighlight);
   };
 
-  onMouseOutSquare = square => this.removeHighlightSquare(square);
+  onMouseOutSquare = (square) => this.removeHighlightSquare(square);
 
   // central squares get diff dropSquareStyles
-  onDragOverSquare = square => {
+  onDragOverSquare = (square) => {
     this.setState({
       dropSquareStyle:
         square === "e4" || square === "d4" || square === "e5" || square === "d5"
           ? { backgroundColor: "cornFlowerBlue" }
-          : { boxShadow: "inset 0 0 1px 4px rgb(255, 255, 0)" }
+          : { boxShadow: "inset 0 0 1px 4px rgb(255, 255, 0)" },
     });
   };
 
-  onSquareClick = square => {
+  onSquareClick = (square) => {
     this.setState(({ history }) => ({
       squareStyles: squareStyling({ pieceSquare: square, history }),
-      pieceSquare: square
+      pieceSquare: square,
     }));
 
     let move = this.game.move({
       from: this.state.pieceSquare,
       to: square,
-      promotion: "q" // always promote to a queen for example simplicity
+      promotion: "q", // always promote to a queen for example simplicity
     });
 
     // illegal move
@@ -163,13 +171,13 @@ class HumanVsHuman extends Component {
     this.setState({
       fen: this.game.fen(),
       history: this.game.history({ verbose: true }),
-      pieceSquare: ""
+      pieceSquare: "",
     });
   };
 
-  onSquareRightClick = square =>
+  onSquareRightClick = (square) =>
     this.setState({
-      squareStyles: { [square]: { backgroundColor: "deepPink" } }
+      squareStyles: { [square]: { backgroundColor: "deepPink" } },
     });
 
   render() {
@@ -186,23 +194,27 @@ class HumanVsHuman extends Component {
       dropSquareStyle,
       onDragOverSquare: this.onDragOverSquare,
       onSquareClick: this.onSquareClick,
-      onSquareRightClick: this.onSquareRightClick
+      onSquareRightClick: this.onSquareRightClick,
     });
   }
 }
 
 class QuizBoard extends Component {
-  state={
-  }
+  state = {};
 
-  componentDidMount(){
+  componentDidMount() {
     //console.log("quizboard mounted");
   }
 
-  render(){
+  render() {
     return (
       <div>
-        <HumanVsHuman initialboard={this.props.initialboard} handleUserAnswer={this.props.handleUserAnswer} questionID={this.props.questionID} skill={this.props.skill}>
+        <HumanVsHuman
+          initialboard={this.props.initialboard}
+          handleUserAnswer={this.props.handleUserAnswer}
+          questionID={this.props.questionID}
+          skill={this.props.skill}
+        >
           {({
             position,
             onDrop,
@@ -218,14 +230,14 @@ class QuizBoard extends Component {
               id="humanVsHuman"
               width={400}
               position={position}
-              lightSquareStyle={ {backgroundColor: 'white'} }
-              darkSquareStyle={ {backgroundColor: 'tan'} }
+              lightSquareStyle={{ backgroundColor: "white" }}
+              darkSquareStyle={{ backgroundColor: "tan" }}
               onDrop={onDrop}
               onMouseOverSquare={onMouseOverSquare}
               onMouseOutSquare={onMouseOutSquare}
               boardStyle={{
                 borderRadius: "5px",
-                boxShadow: `0 5px 15px rgba(0, 0, 0, 0.5)`
+                boxShadow: `0 5px 15px rgba(0, 0, 0, 0.5)`,
               }}
               squareStyles={squareStyles}
               dropSquareStyle={dropSquareStyle}
@@ -237,12 +249,10 @@ class QuizBoard extends Component {
         </HumanVsHuman>
       </div>
     );
-
   }
 }
 
 export default QuizBoard;
-
 
 const squareStyling = ({ pieceSquare, history }) => {
   const sourceSquare = history.length && history[history.length - 1].from;
@@ -252,14 +262,13 @@ const squareStyling = ({ pieceSquare, history }) => {
     [pieceSquare]: { backgroundColor: "rgba(255, 255, 0, 0.4)" },
     ...(history.length && {
       [sourceSquare]: {
-        backgroundColor: "rgba(255, 255, 0, 0.4)"
-      }
+        backgroundColor: "rgba(255, 255, 0, 0.4)",
+      },
     }),
     ...(history.length && {
       [targetSquare]: {
-        backgroundColor: "rgba(255, 255, 0, 0.4)"
-      }
-    })
+        backgroundColor: "rgba(255, 255, 0, 0.4)",
+      },
+    }),
   };
 };
-
