@@ -13,14 +13,19 @@ let pickupStateFen;
 class HumanVsHuman extends Component {
   static propTypes = { children: PropTypes.func };
 
-  state = {
-    boardFromDb: {fen:"initial"}
-  };
+  state = {};
 
   componentDidMount() {
+    this.setState({
+      fen: "",
+      dropSquareStyle: {},
+      squareStyles: {},
+      pieceSquare: "",
+      square: "",
+      history: [],
+    });
     this.callDbForFen(this.props.initialboard);
-    console.log("the state is:", this.state)
-    this.game = new Chess(this.state.boardFromDb.fen);
+    this.game = new Chess(this.state.FEN);
     historyObjHasContent = historyObj ? false : undefined;
   }
 
@@ -42,7 +47,7 @@ class HumanVsHuman extends Component {
   handleBoardAnswer = () => {
     let skillIndex;
     let skill = this.props.skill;
-
+    console.log("handle answer", skill);
     if (skill === "memory") {
       skillIndex = 0;
     } else if (skill === "calculate") {
@@ -64,14 +69,17 @@ class HumanVsHuman extends Component {
   callDbForFen(question) {
     axios
       .get(baseUrl + "boards", {
-        params: {question},
+        params: { question },
       })
-      .then((response) => {
+      .then((res) => {
+        console.log("called database");
+        ///// needs to individually update sections
         this.setState({
-          question: response.data.qn.fen,
-          answer: response.data.ans.fen,
-          skillAndNum: response.data.question
-        })
+          fullState: res.data.Qn,
+          FEN: res.data.Qn.fen,
+          answer: res.data.Ans,
+          skillAndNum: res.data.question,
+        });
       })
       .catch((err) => {
         console.log("couldnt find board", err);
@@ -217,8 +225,6 @@ class QuizBoard extends Component {
         <HumanVsHuman
           initialboard={this.props.initialboard}
           handleUserAnswer={this.props.handleUserAnswer}
-          questionID={this.props.questionID}
-          skill={this.props.skill}
         >
           {({
             position,
